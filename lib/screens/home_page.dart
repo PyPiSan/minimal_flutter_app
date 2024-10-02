@@ -238,17 +238,17 @@ class _HomePageState extends State<HomePage> {
                       label: Text('Home'),
                     ),
                     NavigationRailDestination(
-                      icon: Icon(Icons.home),
+                      icon: Icon(Icons.business),
                       selectedIcon: Icon(Icons.business),
                       label: Text('Anime'),
                     ),
                     NavigationRailDestination(
-                      icon: Icon(Icons.home),
+                      icon: Icon(Icons.school),
                       selectedIcon: Icon(Icons.school),
                       label: Text('Drama'),
                     ),
                     NavigationRailDestination(
-                      icon: Icon(Icons.home),
+                      icon: Icon(Icons.settings),
                       selectedIcon: Icon(Icons.settings),
                       label: Text('Live'),
                     ),
