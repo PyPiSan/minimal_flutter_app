@@ -189,71 +189,77 @@ class _HomePageState extends State<HomePage> {
     // );
 
     return Scaffold(
-        appBar: AppBar(),
-        bottomNavigationBar: getDevice() == "Mobile"
-            ? BottomNavigationBar(
-                items: const <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(
+      appBar: AppBar(),
+      bottomNavigationBar: getDevice() == "Mobile"
+          ? BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                  backgroundColor: Colors.red,
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.business),
+                  label: 'Anime',
+                  backgroundColor: Colors.green,
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.school),
+                  label: 'Drama',
+                  backgroundColor: Colors.purple,
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  label: 'Live',
+                  backgroundColor: Colors.pink,
+                ),
+              ],
+              currentIndex: _selectedIndex,
+              selectedItemColor: Colors.amber[800],
+              onTap: _onItemTapped,
+            )
+          : null,
+      body: Row(
+        children: [
+          if (getDevice() == "PC")
+            NavigationRail(
+                selectedIndex: _selectedIndex,
+                groupAlignment: groupAlignment,
+                onDestinationSelected: (int index) {
+                  setState(() {
+                    _selectedIndex = index;
+                  });
+                },
+                labelType: labelType,
+                destinations: const <NavigationRailDestination>[
+                  NavigationRailDestination(
                     icon: Icon(Icons.home),
-                    label: 'Home',
-                    backgroundColor: Colors.red,
+                    selectedIcon: Icon(Icons.home),
+                    label: Text('Home'),
                   ),
-                  BottomNavigationBarItem(
+                  NavigationRailDestination(
                     icon: Icon(Icons.business),
-                    label: 'Anime',
-                    backgroundColor: Colors.green,
+                    selectedIcon: Icon(Icons.business),
+                    label: Text('Anime'),
                   ),
-                  BottomNavigationBarItem(
+                  NavigationRailDestination(
                     icon: Icon(Icons.school),
-                    label: 'Drama',
-                    backgroundColor: Colors.purple,
+                    selectedIcon: Icon(Icons.school),
+                    label: Text('Drama'),
                   ),
-                  BottomNavigationBarItem(
+                  NavigationRailDestination(
                     icon: Icon(Icons.settings),
-                    label: 'Live',
-                    backgroundColor: Colors.pink,
+                    selectedIcon: Icon(Icons.settings),
+                    label: Text('Live'),
                   ),
-                ],
-                currentIndex: _selectedIndex,
-                selectedItemColor: Colors.amber[800],
-                onTap: _onItemTapped,
-              )
-            : null,
-        body: Row(
-          children: [
-            if (getDevice() == "PC")
-              NavigationRail(
-                  selectedIndex: _selectedIndex,
-                  groupAlignment: groupAlignment,
-                  onDestinationSelected: (int index) {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-                  },
-                  labelType: labelType,
-                  destinations: const <NavigationRailDestination>[
-                    NavigationRailDestination(
-                      icon: Icon(Icons.home),
-                      selectedIcon: Icon(Icons.home),
-                      label: Text('Home'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.business),
-                      selectedIcon: Icon(Icons.business),
-                      label: Text('Anime'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.school),
-                      selectedIcon: Icon(Icons.school),
-                      label: Text('Drama'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.settings),
-                      selectedIcon: Icon(Icons.settings),
-                      label: Text('Live'),
-                    ),
-                  ])
-          ],
-        ));
+                ]),
+          Expanded(
+            child: Column(
+              children: <Widget>[_widgetOptions.elementAt(_selectedIndex)],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
