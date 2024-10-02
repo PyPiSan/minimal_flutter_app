@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 // import 'package:minimal_flutter_app/screens/chat_page.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class NavPage extends StatefulWidget {
+  const NavPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<NavPage> createState() => _NavPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _NavPageState extends State<NavPage> {
   int _selectedIndex = 0;
 
   NavigationRailLabelType labelType = NavigationRailLabelType.all;
