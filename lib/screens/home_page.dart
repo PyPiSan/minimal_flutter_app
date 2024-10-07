@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> {
         }
       },
     );
-    if (m3u8Content == null && video != null) {
+    if (m3u8Content == null) {
       http.Response response = await http.get(Uri.parse(video));
       if (response.statusCode == 200) {
         m3u8Content = utf8.decode(response.bodyBytes);
