@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:minimal_flutter_app/screens/chat_page.dart';
+import 'package:minimal_flutter_app/screens/home_page.dart';
 
 class NavPage extends StatefulWidget {
   const NavPage({super.key});
@@ -16,26 +16,30 @@ class _NavPageState extends State<NavPage> {
   bool showTrailing = false;
   double groupAlignment = -1.0;
 
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  // static const TextStyle optionStyle =
+  //     TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Anime',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Drama',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Live',
-      style: optionStyle,
-    ),
+  // static const List<Widget> _widgetOptions = <Widget>[
+  //   Text(
+  //     'Index 0: Home',
+  //     style: optionStyle,
+  //   ),
+  //   Text(
+  //     'Index 1: Anime',
+  //     style: optionStyle,
+  //   ),
+  //   Text(
+  //     'Index 2: Drama',
+  //     style: optionStyle,
+  //   ),
+  //   HomePage(),
+  // ];
+
+  final List<Widget> _children = [
+    const HomePage(),
+    const HomePage(),
+    const HomePage(),
+    const HomePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -254,9 +258,7 @@ class _NavPageState extends State<NavPage> {
                   ),
                 ]),
           Expanded(
-            child: Column(
-              children: <Widget>[_widgetOptions.elementAt(_selectedIndex)],
-            ),
+            child: _children[_selectedIndex],
           )
         ],
       ),
