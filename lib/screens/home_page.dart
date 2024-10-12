@@ -58,7 +58,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   void m3u8clean() async {
-    // print(yoyo.length);
     for (int i = 2; i < yoyo.length; i++) {
       try {
         final Directory directory = await getApplicationDocumentsDirectory();
@@ -86,10 +85,10 @@ class _HomePageState extends State<HomePage> {
   // M3U8 Data Setup
   void getM3U8(String video) {
     if (yoyo.isNotEmpty) {
-      print("${yoyo.length} : data start clean");
+      // print("${yoyo.length} : data start clean");
       m3u8clean();
     }
-    print("---- m3u8 fitch start ----\n$video\n--- please wait –––");
+    // print("---- m3u8 fitch start ----\n$video\n--- please wait –––");
     m3u8video(video);
   }
 
@@ -98,7 +97,7 @@ class _HomePageState extends State<HomePage> {
     final isNetwork = netRegex.hasMatch(url);
     final a = Uri.parse(url);
 
-    print("parse url data end : ${a.pathSegments.last}");
+    // print("parse url data end : ${a.pathSegments.last}");
     if (isNetwork) {
       setState(() {
         offline = false;
@@ -107,7 +106,7 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           playType = "MKV";
         });
-        print("urlEnd : mkv");
+        // print("urlEnd : mkv");
         if (widget.onPlayingVideo != null) widget.onPlayingVideo!("MKV");
 
         videoControlSetup(url);
@@ -115,10 +114,10 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           playType = "MP4";
         });
-        print("urlEnd : mp4 $playType");
+        // print("urlEnd : mp4 $playType");
         if (widget.onPlayingVideo != null) widget.onPlayingVideo!("MP4");
 
-        print("urlEnd : mp4");
+        // print("urlEnd : mp4");
         videoControlSetup(url);
       } else if (a.pathSegments.last.endsWith("m3u8")) {
         setState(() {
@@ -126,20 +125,20 @@ class _HomePageState extends State<HomePage> {
         });
         if (widget.onPlayingVideo != null) widget.onPlayingVideo!("M3U8");
 
-        print("urlEnd : m3u8");
+        // print("urlEnd : m3u8");
         videoControlSetup(url);
         getM3U8(url);
       } else {
-        print("urlEnd : null");
+        // print("urlEnd : null");
         videoControlSetup(url);
         getM3U8(url);
       }
-      print("--- Current Video Status ---\noffline : $offline");
+      // print("--- Current Video Status ---\noffline : $offline");
     } else {
       setState(() {
         offline = true;
-        print(
-            "--- Current Video Status ---\noffline : $offline \n --- :3 done url check ---");
+        // print(
+        //     "--- Current Video Status ---\noffline : $offline \n --- :3 done url check ---");
       });
       videoControlSetup(url);
     }
@@ -174,8 +173,8 @@ class _HomePageState extends State<HomePage> {
     List<RegExpMatch> matches = regExp.allMatches(m3u8Content!).toList();
     List<RegExpMatch> audioMatches =
         regExpAudio.allMatches(m3u8Content!).toList();
-    print(
-        "--- HLS Data ----\n$m3u8Content \ntotal length: ${yoyo.length} \nfinish");
+    // print(
+    //     "--- HLS Data ----\n$m3u8Content \ntotal length: ${yoyo.length} \nfinish");
 
     matches.forEach(
       (RegExpMatch regExpMatch) async {
@@ -189,10 +188,10 @@ class _HomePageState extends State<HomePage> {
         if (isNetwork) {
           url = sourceURL;
         } else {
-          print(match);
+          // print(match);
           final dataURL = match!.group(0);
           url = "$dataURL$sourceURL";
-          print("--- hls child url integration ---\nchild url :$url");
+          // print("--- hls child url integration ---\nchild url :$url");
         }
         audioMatches.forEach(
           (RegExpMatch regExpMatch2) async {
@@ -203,17 +202,17 @@ class _HomePageState extends State<HomePage> {
             if (isNetwork) {
               auURL = audioURL;
             } else {
-              print(match);
+              // print(match);
               final auDataURL = match!.group(0);
               auURL = "$auDataURL$audioURL";
-              print("url network audio  $url $audioURL");
+              // print("url network audio  $url $audioURL");
             }
             audioList.add(AUDIO(url: auURL));
-            print(audioURL);
+            // print(audioURL);
           },
         );
         String audio = "";
-        print("-- audio ---\naudio list length :${audio.length}");
+        // print("-- audio ---\naudio list length :${audio.length}");
         if (audioList.isNotEmpty) {
           audio =
               """#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio-medium",NAME="audio",AUTOSELECT=YES,DEFAULT=YES,CHANNELS="2",URI="${audioList.last.url}"\n""";
@@ -226,21 +225,21 @@ class _HomePageState extends State<HomePage> {
           await file.writeAsString(
               """#EXTM3U\n#EXT-X-INDEPENDENT-SEGMENTS\n$audio#EXT-X-STREAM-INF:CLOSED-CAPTIONS=NONE,BANDWIDTH=1469712,RESOLUTION=$quality,FRAME-RATE=30.000\n$url""");
         } catch (e) {
-          print("Couldn't write file");
+          // print("Couldn't write file");
         }
         yoyo.add(M3U8pass(dataQuality: quality, dataURL: url));
       },
     );
     M3U8s m3u8s = M3U8s(m3u8s: yoyo);
-    print(
-        "--- m3u8 file write ---\n${yoyo.map((e) => e.dataQuality == e.dataURL).toList()}\nlength : ${yoyo.length}\nSuccess");
+    // print(
+    //     "--- m3u8 file write ---\n${yoyo.map((e) => e.dataQuality == e.dataURL).toList()}\nlength : ${yoyo.length}\nSuccess");
     return m3u8s;
   }
 
   void videoInit(String? url) {
     if (offline == false) {
-      print(
-          "--- Player Status ---\nplay url : $url\noffline : $offline\n--- start playing –––");
+      // print(
+      //     "--- Player Status ---\nplay url : $url\noffline : $offline\n--- start playing –––");
 
       if (playType == "MP4") {
         // Play MP4
@@ -257,11 +256,11 @@ class _HomePageState extends State<HomePage> {
               ..initialize()
                   .then((_) => setState(() => hasInitError = false))
                   .catchError((e) => setState(() => hasInitError = true));
-        print("hls type");
+        // print("hls type");
       }
     } else {
-      print(
-          "--- Player Status ---\nplay url : $url\noffline : $offline\n--- start playing –––");
+      // print(
+      //     "--- Player Status ---\nplay url : $url\noffline : $offline\n--- start playing –––");
       _controller = VideoPlayerController.file(File(url!))
         ..initialize()
             .then((value) => setState(() => hasInitError = false))
@@ -319,6 +318,9 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+        ),
+        Container(
+          padding: const EdgeInsets.only(top: 20.0),
         )
       ]),
     );

@@ -194,7 +194,6 @@ class _NavPageState extends State<NavPage> {
     // );
 
     return Scaffold(
-      appBar: AppBar(),
       bottomNavigationBar: getDevice() == "Mobile"
           ? BottomNavigationBar(
               items: const <BottomNavigationBarItem>[
