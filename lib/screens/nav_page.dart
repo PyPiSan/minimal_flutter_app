@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minimal_flutter_app/screens/home_page.dart';
+import 'package:minimal_flutter_app/widgets/list_card_view.dart';
 
 class NavPage extends StatefulWidget {
   const NavPage({super.key});
@@ -38,7 +39,7 @@ class _NavPageState extends State<NavPage> {
   final List<Widget> _children = [
     const HomePage(),
     const HomePage(),
-    const HomePage(),
+    const CardListView(),
     const HomePage(),
   ];
 
