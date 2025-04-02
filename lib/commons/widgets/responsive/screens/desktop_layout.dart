@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/commons/widgets/layouts/headers/headers.dart';
+import 'package:minimal_flutter_app/commons/widgets/layouts/headers/headers.dart';
 
 class DesktopLayout extends StatelessWidget {
   DesktopLayout({super.key, this.body});

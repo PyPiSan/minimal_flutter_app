@@ -2,16 +2,16 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/commons/widgets/icons/t_circular_icon.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/commons/widgets/images/t_circular_image.dart';
-import '../../../../../../utils/constants/colors.dart';
-import '../../../../../../utils/constants/enums.dart';
-import '../../../../../../utils/constants/sizes.dart';
+import 'package:minimal_flutter_app/commons/widgets/icons/t_circular_icon.dart';
+import 'package:minimal_flutter_app/commons/widgets/images/t_circular_image.dart';
+import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/constants/enums.dart';
+import '../../../../../utils/constants/sizes.dart';
 import 't_rounded_image.dart';
 
 /// Widget for uploading images with optional editing functionality
-class TImageUploader extends StatelessWidget {
-  const TImageUploader({
+class ImageUploader extends StatelessWidget {
+  const ImageUploader({
     super.key,
     this.image,
     this.onIconButtonPressed,
@@ -69,7 +69,7 @@ class TImageUploader extends StatelessWidget {
       children: [
         // Display the image in either circular or rounded shape
         circular
-            ? TCircularImage(
+            ? CircularImage(
                 image: image,
                 width: width,
                 height: height,

@@ -4,14 +4,14 @@ import 'package:minimal_flutter_app/utils/helpers/helper_functions.dart';
 import '../containers/circular_container.dart';
 
 /// A customized choice chip that can act like a radio button.
-class TChoiceChip extends StatelessWidget {
+class AppChoiceChip extends StatelessWidget {
   /// Create a chip that acts like a radio button.
   ///
   /// Parameters:
   ///   - text: The label text for the chip.
   ///   - selected: Whether the chip is currently selected.
   ///   - onSelected: Callback function when the chip is selected.
-  const TChoiceChip({
+  const AppChoiceChip({
     super.key,
     required this.text,
     required this.selected,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/commons/widgets/layouts/templates/site_layout.dart';
+import 'package:minimal_flutter_app/commons/widgets/layouts/templates/site_layout.dart';
 
 class EcommerceApp extends StatelessWidget {
   const EcommerceApp({super.key});

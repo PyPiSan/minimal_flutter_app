@@ -4,11 +4,11 @@ import 'package:iconsax/iconsax.dart';
 import 'package:minimal_flutter_app/utils/constants/colors.dart';
 import 'package:minimal_flutter_app/utils/constants/image_strings.dart';
 import 'package:minimal_flutter_app/utils/constants/sizes.dart';
-import '../../../../commons/widgets/loaders/animation_loader.dart';
+import '../loaders/animation_loader.dart';
 
 /// Custom PaginatedDataTable widget with additional features
-class TPaginatedDataTable extends StatelessWidget {
-  const TPaginatedDataTable({
+class PaginatedDataTable extends StatelessWidget {
+  const PaginatedDataTable({
     super.key,
     required this.columns,
     required this.source,

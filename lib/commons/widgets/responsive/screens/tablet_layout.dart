@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/commons/widgets/layouts/headers/headers.dart';
+import 'package:minimal_flutter_app/commons/widgets/layouts/headers/headers.dart';
 
-class MobileLayout extends StatelessWidget {
-  MobileLayout({super.key, this.body});
+class TabletLayout extends StatelessWidget {
+  TabletLayout({super.key, this.body});
   final Widget? body;
   final GlobalKey<ScaffoldState> scafoldKey = GlobalKey();
   @override

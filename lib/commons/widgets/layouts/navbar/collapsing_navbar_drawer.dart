@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_flutter_app/commons/widgets/navbar/collapsing_list_tile.dart';
+import 'package:minimal_flutter_app/commons/widgets/layouts/navbar/collapsing_list_tile.dart';
 import 'package:minimal_flutter_app/model/collapsing_navbar_drawer_model.dart';
 import 'package:minimal_flutter_app/utils/constants/colors.dart';
 

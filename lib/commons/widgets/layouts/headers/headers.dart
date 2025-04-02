@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/commons/widgets/images/t_rounded_image.dart';
+import 'package:minimal_flutter_app/commons/widgets/images/t_rounded_image.dart';
 import 'package:minimal_flutter_app/utils/constants/colors.dart';
 import 'package:minimal_flutter_app/utils/constants/enums.dart';
 import 'package:minimal_flutter_app/utils/constants/image_strings.dart';

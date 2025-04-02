@@ -6,8 +6,8 @@ import 'package:minimal_flutter_app/utils/constants/enums.dart';
 import 'package:minimal_flutter_app/utils/constants/sizes.dart';
 import '../shimmers/shimmer.dart';
 
-class TCircularImage extends StatelessWidget {
-  const TCircularImage({
+class CircularImage extends StatelessWidget {
+  const CircularImage({
     super.key,
     this.width = 56,
     this.height = 56,
