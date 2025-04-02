@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/utils/constants/colors.dart';
+import 'package:minimal_flutter_app/utils/constants/colors.dart';
 import '../../../utils/device/device_utility.dart';
 import '../../../utils/helpers/helper_functions.dart';
 
@@ -37,7 +37,7 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? IconButton(
               onPressed: () => Get.back(),
               icon: Icon(Iconsax.arrow_left,
-                  color: dark ? TColors.white : TColors.dark))
+                  color: dark ? Colors.white : Colors.dark))
           : leadingIcon != null
               ? IconButton(onPressed: leadingOnPressed, icon: Icon(leadingIcon))
               : null,

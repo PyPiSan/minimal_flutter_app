@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:minimal_flutter_app/ecommerce_ui/routes/app_route.dart';
 import 'package:minimal_flutter_app/ecommerce_ui/routes/route.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/utils/theme/theme.dart';
+import 'package:minimal_flutter_app/utils/theme/theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

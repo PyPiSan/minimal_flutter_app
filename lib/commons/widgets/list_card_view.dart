@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_flutter_app/widgets/card.dart';
+import 'package:minimal_flutter_app/commons/widgets/cards/card.dart';
 
 class CardListView extends StatefulWidget {
   const CardListView({super.key});

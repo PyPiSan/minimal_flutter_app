@@ -76,7 +76,7 @@ class TImageUploader extends StatelessWidget {
                 height: height,
                 imageType: imageType,
                 memoryImage: memoryImage,
-                backgroundColor: TColors.primaryBackground,
+                backgroundColor: Colors.primaryBackground,
               )
             : TRoundedImage(
                 image: image,
@@ -84,7 +84,7 @@ class TImageUploader extends StatelessWidget {
                 height: height,
                 imageType: imageType,
                 memoryImage: memoryImage,
-                backgroundColor: TColors.primaryBackground,
+                backgroundColor: Colors.primaryBackground,
               ),
         // Display the edit icon button on top of the image
         Positioned(
@@ -97,7 +97,7 @@ class TImageUploader extends StatelessWidget {
             size: TSizes.md,
             color: Colors.white,
             onPressed: onIconButtonPressed,
-            backgroundColor: TColors.primary.withOpacity(0.9),
+            backgroundColor: Colors.primary.withOpacity(0.9),
           ),
         )
       ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/utils/constants/colors.dart';
+import 'package:minimal_flutter_app/utils/constants/colors.dart';
 
 /// A circular container widget with optional child, border, and styling.
 class CircularContainer extends StatelessWidget {
@@ -24,8 +24,8 @@ class CircularContainer extends StatelessWidget {
     this.height = 400,
     this.radius = 400,
     this.showBorder = false,
-    this.backgroundColor = TColors.white,
-    this.borderColor = TColors.borderPrimary,
+    this.backgroundColor = Colors.white,
+    this.borderColor = Colors.borderPrimary,
   });
 
   final Widget? child;

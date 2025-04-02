@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants/colors.dart';
+import 'package:minimal_flutter_app/utils/constants/colors.dart';
 import 'widget_themes/appbar_theme.dart';
 import 'widget_themes/bottom_sheet_theme.dart';
 import 'widget_themes/checkbox_theme.dart';
@@ -15,34 +15,40 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     fontFamily: 'Urbanist',
-    disabledColor: TColors.grey,
+    disabledColor: Colors.grey,
     brightness: Brightness.light,
-    primaryColor: TColors.primary,
-    textTheme: TTextTheme.lightTextTheme,
+    primaryColor: AppColors.primary,
+    textTheme: AppTextTheme.lightTextTheme,
     chipTheme: TChipTheme.lightChipTheme,
     appBarTheme: TAppBarTheme.lightAppBarTheme,
-    checkboxTheme: TCheckboxTheme.lightCheckboxTheme,
-    scaffoldBackgroundColor: TColors.primaryBackground,
-    bottomSheetTheme: TBottomSheetTheme.lightBottomSheetTheme,
+    checkboxTheme: AppCheckboxTheme.lightCheckboxTheme,
+    scaffoldBackgroundColor: AppColors.primaryBackground,
+    bottomSheetTheme: BottomSheetTheme.lightBottomSheetTheme,
     elevatedButtonTheme: TElevatedButtonTheme.lightElevatedButtonTheme,
     outlinedButtonTheme: TOutlinedButtonTheme.lightOutlinedButtonTheme,
-    inputDecorationTheme: TTextFormFieldTheme.lightInputDecorationTheme,
+    inputDecorationTheme: TextFormFieldTheme.lightInputDecorationTheme,
   );
 
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     fontFamily: 'Urbanist',
-    disabledColor: TColors.grey,
+    disabledColor: Colors.grey,
     brightness: Brightness.dark,
-    primaryColor: TColors.primary,
-    textTheme: TTextTheme.darkTextTheme,
+    primaryColor: AppColors.primary,
+    textTheme: AppTextTheme.darkTextTheme,
     chipTheme: TChipTheme.darkChipTheme,
     appBarTheme: TAppBarTheme.darkAppBarTheme,
-    checkboxTheme: TCheckboxTheme.darkCheckboxTheme,
-    scaffoldBackgroundColor: TColors.primary.withOpacity(0.1),
-    bottomSheetTheme: TBottomSheetTheme.darkBottomSheetTheme,
+    checkboxTheme: AppCheckboxTheme.darkCheckboxTheme,
+    scaffoldBackgroundColor: AppColors.primary.withOpacity(0.1),
+    bottomSheetTheme: BottomSheetTheme.darkBottomSheetTheme,
     elevatedButtonTheme: TElevatedButtonTheme.darkElevatedButtonTheme,
     outlinedButtonTheme: TOutlinedButtonTheme.darkOutlinedButtonTheme,
-    inputDecorationTheme: TTextFormFieldTheme.darkInputDecorationTheme,
+    inputDecorationTheme: TextFormFieldTheme.darkInputDecorationTheme,
   );
+
+  static TextStyle collapsingNavBarDrawerDefaultTextStyle = const TextStyle(
+      color: Colors.white70, fontSize: 20.0, fontWeight: FontWeight.w600);
+
+  static TextStyle collapsingNavBarDrawerSelectedTextStyle = const TextStyle(
+      color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.w600);
 }

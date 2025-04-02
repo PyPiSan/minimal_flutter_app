@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_flutter_app/commons/widgets/list_card_view.dart';
 import 'package:minimal_flutter_app/screens/home_page.dart';
-import 'package:minimal_flutter_app/widgets/list_card_view.dart';
 
 class NavPage extends StatefulWidget {
   const NavPage({super.key});
@@ -200,7 +200,7 @@ class _NavPageState extends State<NavPage> {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
                   label: 'Home',
-                  backgroundColor: Colors.red,
+                  backgroundColor: Color.fromARGB(255, 247, 238, 238),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.business),

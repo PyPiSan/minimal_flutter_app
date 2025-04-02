@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../constants/colors.dart';
+import 'package:minimal_flutter_app/utils/constants/colors.dart';
 import '../../constants/sizes.dart';
 
 /// Custom Class for Light & Dark Text Themes
-class TCheckboxTheme {
-  TCheckboxTheme._(); // To avoid creating instances
+class AppCheckboxTheme {
+  AppCheckboxTheme._(); // To avoid creating instances
 
   /// Customizable Light Text Theme
   static CheckboxThemeData lightCheckboxTheme = CheckboxThemeData(
@@ -12,14 +12,14 @@ class TCheckboxTheme {
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.xs)),
     checkColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
-        return TColors.white;
+        return Colors.white;
       } else {
-        return TColors.black;
+        return Colors.black;
       }
     }),
     fillColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
-        return TColors.primary;
+        return AppColors.primary;
       } else {
         return Colors.transparent;
       }
@@ -32,14 +32,14 @@ class TCheckboxTheme {
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.xs)),
     checkColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
-        return TColors.white;
+        return Colors.white;
       } else {
-        return TColors.black;
+        return Colors.black;
       }
     }),
     fillColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
-        return TColors.primary;
+        return AppColors.primary;
       } else {
         return Colors.transparent;
       }

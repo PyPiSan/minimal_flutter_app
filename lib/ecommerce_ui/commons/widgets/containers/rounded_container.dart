@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/utils/constants/colors.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/utils/constants/sizes.dart';
+import 'package:minimal_flutter_app/utils/constants/colors.dart';
+import 'package:minimal_flutter_app/utils/constants/sizes.dart';
 
 /// A container widget with rounded corners and customizable properties.
 class RoundedContainer extends StatelessWidget {
@@ -25,9 +25,9 @@ class RoundedContainer extends StatelessWidget {
     this.showShadow = true,
     this.showBorder = false,
     this.padding = const EdgeInsets.all(TSizes.md),
-    this.borderColor = TColors.borderPrimary,
+    this.borderColor = Colors.borderPrimary,
     this.radius = TSizes.cardRadiusLg,
-    this.backgroundColor = TColors.white,
+    this.backgroundColor = Colors.white,
     this.onTap,
   });
 
@@ -59,7 +59,7 @@ class RoundedContainer extends StatelessWidget {
           boxShadow: [
             if (showShadow)
               BoxShadow(
-                color: TColors.grey.withOpacity(0.1),
+                color: Colors.grey.withOpacity(0.1),
                 spreadRadius: 5,
                 blurRadius: 8,
                 offset: const Offset(0, 3),
