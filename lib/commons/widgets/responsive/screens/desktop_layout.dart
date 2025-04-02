@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minimal_flutter_app/commons/widgets/layouts/headers/headers.dart';
+import 'package:minimal_flutter_app/commons/widgets/layouts/sidebars/sidebar.dart';
 
 class DesktopLayout extends StatelessWidget {
   DesktopLayout({super.key, this.body});
@@ -12,7 +13,7 @@ class DesktopLayout extends StatelessWidget {
       // key: scafoldKey,
       body: Row(
         children: [
-          const Expanded(child: Drawer()),
+          const Expanded(child: Sidebar()),
           Expanded(
               flex: 5,
               child: Column(
