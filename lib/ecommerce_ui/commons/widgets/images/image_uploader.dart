@@ -77,7 +77,7 @@ class TImageUploader extends StatelessWidget {
                 memoryImage: memoryImage,
                 backgroundColor: AppColors.primaryBackground,
               )
-            : TRoundedImage(
+            : RoundedImage(
                 image: image,
                 width: width,
                 height: height,

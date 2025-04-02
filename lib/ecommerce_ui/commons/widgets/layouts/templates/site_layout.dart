@@ -19,6 +19,7 @@ class SiteTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: ResponsiveDesign(
           desktop:
               useLayout ? DesktopLayout(body: desktop) : desktop ?? Container(),

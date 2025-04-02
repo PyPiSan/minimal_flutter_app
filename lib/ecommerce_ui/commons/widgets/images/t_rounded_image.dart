@@ -6,8 +6,8 @@ import 'package:minimal_flutter_app/utils/constants/enums.dart';
 import 'package:minimal_flutter_app/utils/constants/sizes.dart';
 import '../shimmers/shimmer.dart';
 
-class TRoundedImage extends StatelessWidget {
-  const TRoundedImage({
+class RoundedImage extends StatelessWidget {
+  const RoundedImage({
     super.key,
     this.image,
     this.file,

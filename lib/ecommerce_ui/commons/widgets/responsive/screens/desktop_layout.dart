@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/commons/widgets/containers/rounded_container.dart';
+import 'package:minimal_flutter_app/ecommerce_ui/commons/widgets/layouts/headers/headers.dart';
 
 class DesktopLayout extends StatelessWidget {
-  const DesktopLayout({super.key, this.body});
+  DesktopLayout({super.key, this.body});
   final Widget? body;
+  final GlobalKey<ScaffoldState> scafoldKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // key: scafoldKey,
       body: Row(
         children: [
           const Expanded(child: Drawer()),
@@ -15,12 +17,15 @@ class DesktopLayout extends StatelessWidget {
               flex: 5,
               child: Column(
                 children: [
-                  const RoundedContainer(
-                    width: double.infinity,
-                    height: 500,
-                    backgroundColor: Colors.yellow,
-                  ),
+                  // const RoundedContainer(
+                  //   width: double.infinity,
+                  //   height: 500,
+                  //   backgroundColor: Colors.yellow,
+                  // ),
                   // body
+                  const AppHeaders(
+                      // scafoldKey: scafoldKey,
+                      ),
                   body ?? const SizedBox()
                 ],
               ))
