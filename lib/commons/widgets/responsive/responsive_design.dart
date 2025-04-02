@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_flutter_app/utils/device/device_utility.dart';
 
 class ResponsiveDesign extends StatelessWidget {
   const ResponsiveDesign(
@@ -13,9 +14,9 @@ class ResponsiveDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (_, constraints) {
-      if (constraints.maxWidth >= 1234) {
+      if (DeviceUtils.isDesktopScreen(context)) {
         return desktop;
-      } else if (constraints.maxWidth < 1234 && constraints.maxWidth >= 123) {
+      } else if (DeviceUtils.isTabletScreen(context)) {
         return tablet;
       } else {
         return mobile;

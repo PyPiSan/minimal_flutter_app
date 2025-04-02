@@ -19,20 +19,20 @@ class SiteTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: ResponsiveDesign(
+        appBar: AppBar(),
+        body: ResponsiveDesign(
           desktop:
               useLayout ? DesktopLayout(body: desktop) : desktop ?? Container(),
+          tablet: useLayout
+              ? TabletLayout(
+                  body: tablet ?? desktop,
+                )
+              : tablet ?? desktop ?? Container(),
           mobile: useLayout
               ? MobileLayout(
                   body: mobile ?? desktop,
                 )
               : mobile ?? desktop ?? Container(),
-          tablet: useLayout
-              ? TabletLayout(
-                  body: tablet ?? desktop,
-                )
-              : tablet ?? desktop ?? Container()),
-    );
+        ));
   }
 }
