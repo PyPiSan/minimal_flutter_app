@@ -1,10 +1,9 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../../utils/constants/enums.dart';
-import '../../../utils/constants/sizes.dart';
+import 'package:minimal_flutter_app/utils/constants/enums.dart';
+import 'package:minimal_flutter_app/utils/constants/sizes.dart';
 import '../shimmers/shimmer.dart';
 
 class TRoundedImage extends StatelessWidget {
@@ -19,11 +18,11 @@ class TRoundedImage extends StatelessWidget {
     this.overlayColor,
     required this.imageType,
     this.backgroundColor,
-    this.padding = TSizes.sm,
+    this.padding = AppSizes.sm,
     this.margin,
     this.fit = BoxFit.contain,
     this.applyImageRadius = true,
-    this.borderRadius = TSizes.md,
+    this.borderRadius = AppSizes.md,
   });
 
   final bool applyImageRadius;

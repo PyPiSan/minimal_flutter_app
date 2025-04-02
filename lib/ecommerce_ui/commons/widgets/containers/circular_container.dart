@@ -25,7 +25,7 @@ class CircularContainer extends StatelessWidget {
     this.radius = 400,
     this.showBorder = false,
     this.backgroundColor = Colors.white,
-    this.borderColor = Colors.borderPrimary,
+    this.borderColor = AppColors.borderPrimary,
   });
 
   final Widget? child;

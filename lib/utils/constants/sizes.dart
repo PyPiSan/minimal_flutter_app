@@ -1,5 +1,4 @@
-
-class TSizes {
+class AppSizes {
   // Padding and margin sizes
   static const double xs = 4.0;
   static const double sm = 8.0;
@@ -74,6 +73,3 @@ class TSizes {
   static const int mobileScreenSize = 360;
   static const int customScreenSize = 1100;
 }
-
-
-

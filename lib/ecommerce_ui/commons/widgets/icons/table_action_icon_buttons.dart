@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import '../../../utils/constants/colors.dart';
+import 'package:minimal_flutter_app/utils/constants/colors.dart';
 
 /// Widget for displaying action buttons for table rows
 class TTableActionButtons extends StatelessWidget {
@@ -39,17 +39,17 @@ class TTableActionButtons extends StatelessWidget {
         if (view)
           IconButton(
             onPressed: onViewPressed,
-            icon: const Icon(Iconsax.eye, color: TColors.darkerGrey),
+            icon: const Icon(Iconsax.eye, color: AppColors.darkerGrey),
           ),
         if (edit)
           IconButton(
             onPressed: onEditPressed,
-            icon: const Icon(Iconsax.pen_add, color: TColors.primary),
+            icon: const Icon(Iconsax.pen_add, color: AppColors.primary),
           ),
         if (delete)
           IconButton(
             onPressed: onDeletePressed,
-            icon: const Icon(Iconsax.trash, color: TColors.error),
+            icon: const Icon(Iconsax.trash, color: AppColors.error),
           ),
       ],
     );

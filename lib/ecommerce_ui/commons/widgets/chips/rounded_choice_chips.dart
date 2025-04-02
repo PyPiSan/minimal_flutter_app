@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../utils/constants/colors.dart';
-import '../../../utils/helpers/helper_functions.dart';
+import 'package:minimal_flutter_app/utils/constants/colors.dart';
+import 'package:minimal_flutter_app/utils/helpers/helper_functions.dart';
 import '../containers/circular_container.dart';
 
 /// A customized choice chip that can act like a radio button.
@@ -30,26 +29,26 @@ class TChoiceChip extends StatelessWidget {
       data: Theme.of(context).copyWith(canvasColor: Colors.transparent),
       child: ChoiceChip(
         // Use this function to get Colors as a Chip
-        avatar: THelperFunctions.getColor(text) != null
+        avatar: HelperFunctions.getColor(text) != null
             ? CircularContainer(
                 width: 50,
                 height: 50,
-                backgroundColor: THelperFunctions.getColor(text)!)
+                backgroundColor: HelperFunctions.getColor(text)!)
             : null,
         selected: selected,
         onSelected: onSelected,
-        backgroundColor: THelperFunctions.getColor(text),
-        labelStyle: TextStyle(color: selected ? TColors.white : null),
-        shape: THelperFunctions.getColor(text) != null
+        backgroundColor: HelperFunctions.getColor(text),
+        labelStyle: TextStyle(color: selected ? AppColors.white : null),
+        shape: HelperFunctions.getColor(text) != null
             ? const CircleBorder()
             : null,
-        label: THelperFunctions.getColor(text) == null
+        label: HelperFunctions.getColor(text) == null
             ? Text(text)
             : const SizedBox(),
-        padding: THelperFunctions.getColor(text) != null
+        padding: HelperFunctions.getColor(text) != null
             ? const EdgeInsets.all(0)
             : null,
-        labelPadding: THelperFunctions.getColor(text) != null
+        labelPadding: HelperFunctions.getColor(text) != null
             ? const EdgeInsets.all(0)
             : null,
       ),

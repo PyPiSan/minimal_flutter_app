@@ -2,8 +2,8 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../../utils/constants/enums.dart';
-import '../../../utils/constants/sizes.dart';
+import 'package:minimal_flutter_app/utils/constants/enums.dart';
+import 'package:minimal_flutter_app/utils/constants/sizes.dart';
 import '../shimmers/shimmer.dart';
 
 class TCircularImage extends StatelessWidget {
@@ -17,7 +17,7 @@ class TCircularImage extends StatelessWidget {
     this.image,
     this.imageType = ImageType.asset,
     this.fit = BoxFit.cover,
-    this.padding = TSizes.sm,
+    this.padding = AppSizes.sm,
     this.file,
   });
 
@@ -37,7 +37,10 @@ class TCircularImage extends StatelessWidget {
       height: height,
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
-        color: backgroundColor ?? (Theme.of(context).brightness == Brightness.dark ? Colors.black : Colors.white),
+        color: backgroundColor ??
+            (Theme.of(context).brightness == Brightness.dark
+                ? Colors.black
+                : Colors.white),
         borderRadius: BorderRadius.circular(width >= height ? width : height),
       ),
       child: _buildImageWidget(),
@@ -78,7 +81,8 @@ class TCircularImage extends StatelessWidget {
         color: overlayColor,
         imageUrl: image!,
         errorWidget: (context, url, error) => const Icon(Icons.error),
-        progressIndicatorBuilder: (context, url, downloadProgress) => const TShimmerEffect(width: 55, height: 55),
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            const TShimmerEffect(width: 55, height: 55),
       );
     } else {
       // Return an empty container if no image is provided
@@ -90,7 +94,8 @@ class TCircularImage extends StatelessWidget {
   Widget _buildMemoryImage() {
     if (memoryImage != null) {
       // Display image from memory using Image widget
-      return Image(fit: fit, image: MemoryImage(memoryImage!), color: overlayColor);
+      return Image(
+          fit: fit, image: MemoryImage(memoryImage!), color: overlayColor);
     } else {
       // Return an empty container if no image is provided
       return Container();

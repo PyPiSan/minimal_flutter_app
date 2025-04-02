@@ -24,9 +24,9 @@ class RoundedContainer extends StatelessWidget {
     this.margin,
     this.showShadow = true,
     this.showBorder = false,
-    this.padding = const EdgeInsets.all(TSizes.md),
-    this.borderColor = Colors.borderPrimary,
-    this.radius = TSizes.cardRadiusLg,
+    this.padding = const EdgeInsets.all(AppSizes.md),
+    this.borderColor = AppColors.borderPrimary,
+    this.radius = AppSizes.cardRadiusLg,
     this.backgroundColor = Colors.white,
     this.onTap,
   });

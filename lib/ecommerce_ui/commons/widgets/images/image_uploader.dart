@@ -2,9 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-
-import '../../../../../../common/widgets/icons/t_circular_icon.dart';
-import '../../../../../../common/widgets/images/t_circular_image.dart';
+import 'package:minimal_flutter_app/ecommerce_ui/commons/widgets/icons/t_circular_icon.dart';
+import 'package:minimal_flutter_app/ecommerce_ui/commons/widgets/images/t_circular_image.dart';
 import '../../../../../../utils/constants/colors.dart';
 import '../../../../../../utils/constants/enums.dart';
 import '../../../../../../utils/constants/sizes.dart';
@@ -76,7 +75,7 @@ class TImageUploader extends StatelessWidget {
                 height: height,
                 imageType: imageType,
                 memoryImage: memoryImage,
-                backgroundColor: Colors.primaryBackground,
+                backgroundColor: AppColors.primaryBackground,
               )
             : TRoundedImage(
                 image: image,
@@ -84,7 +83,7 @@ class TImageUploader extends StatelessWidget {
                 height: height,
                 imageType: imageType,
                 memoryImage: memoryImage,
-                backgroundColor: Colors.primaryBackground,
+                backgroundColor: AppColors.primaryBackground,
               ),
         // Display the edit icon button on top of the image
         Positioned(
@@ -94,10 +93,10 @@ class TImageUploader extends StatelessWidget {
           bottom: bottom,
           child: TCircularIcon(
             icon: icon,
-            size: TSizes.md,
+            size: AppSizes.md,
             color: Colors.white,
             onPressed: onIconButtonPressed,
-            backgroundColor: Colors.primary.withOpacity(0.9),
+            backgroundColor: AppColors.primary.withOpacity(0.9),
           ),
         )
       ],

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:minimal_flutter_app/utils/constants/colors.dart';
-import '../../../utils/device/device_utility.dart';
-import '../../../utils/helpers/helper_functions.dart';
+import 'package:minimal_flutter_app/utils/device/device_utility.dart';
+import 'package:minimal_flutter_app/utils/helpers/helper_functions.dart';
 
 class TAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Custom appbar for achieving a desired design goal.
@@ -30,14 +30,14 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
+    final dark = HelperFunctions.isDarkMode(context);
     return AppBar(
       automaticallyImplyLeading: false,
       leading: showBackArrow
           ? IconButton(
               onPressed: () => Get.back(),
               icon: Icon(Iconsax.arrow_left,
-                  color: dark ? Colors.white : Colors.dark))
+                  color: dark ? Colors.white : AppColors.dark))
           : leadingIcon != null
               ? IconButton(onPressed: leadingOnPressed, icon: Icon(leadingIcon))
               : null,
@@ -47,5 +47,5 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(TDeviceUtils.getAppBarHeight());
+  Size get preferredSize => Size.fromHeight(DeviceUtils.getAppBarHeight());
 }
