@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minimal_flutter_app/commons/styles/spacing_styles.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/features.authentication/screens/widgets/login_form.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/features.authentication/screens/widgets/login_header.dart';
+import 'package:minimal_flutter_app/ecommerce_ui/features/authentication/screens/widgets/login_form.dart';
+import 'package:minimal_flutter_app/ecommerce_ui/features/authentication/screens/widgets/login_header.dart';
 import 'package:minimal_flutter_app/utils/constants/colors.dart';
 import 'package:minimal_flutter_app/utils/constants/sizes.dart';
 
@@ -12,7 +12,7 @@ class LoginScreenDesktopTablet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: 550,
+        width: 550,
         child: SingleChildScrollView(
           child: Container(
             padding: SpacingStyle.paddingWithAppBarHeight,
