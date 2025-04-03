@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:minimal_flutter_app/ecommerce_ui/routes/route.dart';
 import 'package:minimal_flutter_app/utils/constants/sizes.dart';
 import 'package:minimal_flutter_app/utils/constants/text_strings.dart';
 
@@ -47,7 +49,8 @@ class LoginForm extends StatelessWidget {
               ),
               // Forget password
               TextButton(
-                  onPressed: () {}, child: const Text(TTexts.forgetPassword))
+                  onPressed: () => Get.toNamed(Routes.forgetPassword),
+                  child: const Text(TTexts.forgetPassword))
             ],
           ),
           const SizedBox(
