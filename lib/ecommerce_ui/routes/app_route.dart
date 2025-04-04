@@ -3,6 +3,7 @@ import 'package:minimal_flutter_app/ecommerce_ui/features/authentication/screens
 import 'package:minimal_flutter_app/ecommerce_ui/features/authentication/screens/login/login.dart';
 import 'package:minimal_flutter_app/ecommerce_ui/features/authentication/screens/reset_password/reset_password.dart';
 import 'package:minimal_flutter_app/ecommerce_ui/routes/route.dart';
+import 'package:minimal_flutter_app/ecommerce_ui/routes/routes_middleware.dart';
 
 class AppRoute {
   static final List<GetPage> pages = [
@@ -11,5 +12,9 @@ class AppRoute {
         name: Routes.forgetPassword, page: () => const ForgotPasswordScreen()),
     GetPage(
         name: Routes.resetPassword, page: () => const ResetPasswordScreen()),
+    GetPage(
+        name: Routes.dashboard,
+        page: () => const ResetPasswordScreen(),
+        middlewares: [RouteMiddleware()]),
   ];
 }
