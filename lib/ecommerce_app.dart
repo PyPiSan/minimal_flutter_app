@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:minimal_flutter_app/ecommerce_ui/routes/app_route.dart';
 import 'package:minimal_flutter_app/ecommerce_ui/routes/route.dart';
+import 'package:minimal_flutter_app/utils/helpers/general_bindings.dart';
 import 'package:minimal_flutter_app/utils/theme/theme.dart';
 
 class EcommerceApp extends StatelessWidget {
@@ -18,6 +19,7 @@ class EcommerceApp extends StatelessWidget {
       // debug mode switch
       debugShowCheckedModeBanner: false,
       getPages: AppRoute.pages,
+      initialBinding: GeneralBindings(),
       initialRoute: Routes.login,
       unknownRoute: GetPage(
         name: '/page-not-found',

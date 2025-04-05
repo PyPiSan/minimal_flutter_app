@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:minimal_flutter_app/ecommerce_app.dart';
 import 'package:minimal_flutter_app/ecommerce_ui/data/repository/authentication/authentication_repository.dart';
 import 'package:minimal_flutter_app/plugins/mac_plugins.dart'
@@ -12,6 +13,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Use different plugins
   configureApp();
+  // Initialize GetX storage
+  await GetStorage.init();
   // Authenticate Repository
   final prefs = await SharedPreferences.getInstance();
   Get.put(AuthenticationRepository(prefs)); // Inject into GetX
