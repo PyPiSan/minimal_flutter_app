@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_flutter_app/commons/widgets/containers/rounded_container.dart';
 import 'package:minimal_flutter_app/ecommerce_ui/features/shops/screens/dashboard/widgets/dashboard_card_widget.dart';
 import 'package:minimal_flutter_app/utils/constants/sizes.dart';
 
@@ -60,6 +61,33 @@ class DashboardDesktopScreen extends StatelessWidget {
                         subTitle: '\$356.25',
                       ),
                     ),
+                  ],
+                ),
+
+                const SizedBox(
+                  height: AppSizes.spaceBtwSections,
+                ),
+                // Graphs
+                const Row(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        children: [
+                          // BarGraphs
+                          RoundedContainer(),
+                          SizedBox(
+                            height: AppSizes.spaceBtwSections,
+                          ),
+                          // Orders
+                          RoundedContainer(),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: AppSizes.spaceBtwSections,
+                    ),
+                    Expanded(child: RoundedContainer()),
                   ],
                 )
               ],
