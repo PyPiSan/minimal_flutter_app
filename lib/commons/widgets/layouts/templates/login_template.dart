@@ -11,7 +11,7 @@ class LoginTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 550,
+        width: 500,
         child: SingleChildScrollView(
           child: Container(
               padding: SpacingStyle.paddingWithAppBarHeight,
