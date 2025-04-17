@@ -316,4 +316,7 @@ class Images {
   static const String paytm = "assets/icons/payment_methods/paytm.png";
   static const String successfulPaymentIcon =
       "assets/icons/payment_methods/successful_payment_icon.png";
+
+  // Images for Chat App
+  static const String chatLogo = "assets/logos/logo.svg";
 }
