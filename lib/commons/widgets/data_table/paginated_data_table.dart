@@ -7,13 +7,13 @@ import 'package:minimal_flutter_app/utils/constants/sizes.dart';
 import '../loaders/animation_loader.dart';
 
 /// Custom PaginatedDataTable widget with additional features
-class PaginatedDataTable extends StatelessWidget {
-  const PaginatedDataTable({
+class AppPaginatedDataTable extends StatelessWidget {
+  const AppPaginatedDataTable({
     super.key,
     required this.columns,
     required this.source,
     this.rowsPerPage = 10,
-    this.tableHeight = 760,
+    this.tableHeight = 500,
     this.onPageChanged,
     this.sortColumnIndex,
     this.dataRowHeight = AppSizes.xl * 2,
