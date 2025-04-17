@@ -27,7 +27,7 @@ class DesktopLayout extends StatelessWidget {
                   const AppHeaders(
                       // scafoldKey: scafoldKey,
                       ),
-                  body ?? const SizedBox()
+                  Expanded(child: body ?? const SizedBox())
                 ],
               ))
         ],

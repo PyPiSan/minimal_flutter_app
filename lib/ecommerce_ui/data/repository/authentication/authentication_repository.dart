@@ -21,14 +21,7 @@ class AuthenticationRepository extends GetxController {
   }
 
   void screenredirect() async {
-    final user = "";
-
-    if (user != null) {
-      // Navigate to the Home
-      Get.offAllNamed(Routes.dashboard);
-    } else {
-      Get.offAllNamed(Routes.login);
-    }
+    Get.offAllNamed(Routes.dashboard);
   }
 
   // Login

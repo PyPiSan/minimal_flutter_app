@@ -13,6 +13,7 @@ class AppHeaders extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final controller = UserController.instance;
     return Container(
       decoration: const BoxDecoration(
           color: AppColors.white,
