@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TSectionHeading extends StatelessWidget {
-  const TSectionHeading({
+class AppSectionHeading extends StatelessWidget {
+  const AppSectionHeading({
     super.key,
     this.textColor,
     required this.title,
@@ -18,10 +18,13 @@ class TSectionHeading extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(title,
-            style: Theme.of(context).textTheme.headlineSmall!.apply(color: textColor),
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall!
+                .apply(color: textColor),
             maxLines: 1,
             overflow: TextOverflow.ellipsis),
-        if (rightSideWidget!= null) rightSideWidget!
+        if (rightSideWidget != null) rightSideWidget!
       ],
     );
   }
