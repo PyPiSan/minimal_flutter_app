@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:minimal_flutter_app/chat_app_ui/features/authentication/controllers/login_controller.dart';
 import 'package:minimal_flutter_app/utils/constants/image_strings.dart';
@@ -35,32 +36,45 @@ class EmailForm extends StatelessWidget {
                 height: AppSizes.spaceBtwInputFields,
               ),
               // Sign In Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () => controller.sendOTPSignIn(),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          const Color(0xFF4C9FA7), // 👈 background color
-                      foregroundColor: Colors.black, // 👈 text/icon color
-                      elevation: 2,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+              Obx(
+                () => SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () => controller.sendOTPSignIn(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            const Color(0xFF4C9FA7), // 👈 background color
+                        foregroundColor: Colors.black, // 👈 text/icon color
+                        elevation: 2,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
-                    ),
-                    child: const Row(
-                      mainAxisSize:
-                          MainAxisSize.min, // 👈 so it wraps content tightly
-                      children: [
-                        Text(TTexts.chatAppLoginContinue),
-                        SizedBox(
-                            width: AppSizes
-                                .spaceBtwItems), // spacing between text and icon
-                        Icon(Iconsax.arrow_right_1), // 👈 your suffix icon
-                      ],
-                    )),
+                      child: controller.isLoading.value
+                          ? const SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                              ),
+                            )
+                          : const Row(
+                              mainAxisSize: MainAxisSize
+                                  .min, // 👈 so it wraps content tightly
+                              children: [
+                                Text(TTexts.chatAppLoginContinue),
+                                SizedBox(
+                                    width: AppSizes
+                                        .spaceBtwItems), // spacing between text and icon
+                                Icon(Iconsax
+                                    .arrow_right_1), // 👈 your suffix icon
+                              ],
+                            )),
+                ),
               ),
               const SizedBox(
                 height: AppSizes.spaceBtwInputFields / 2,

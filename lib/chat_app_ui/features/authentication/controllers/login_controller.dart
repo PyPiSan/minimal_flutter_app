@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:minimal_flutter_app/utils/constants/image_strings.dart';
 import 'package:minimal_flutter_app/utils/helpers/network_manager.dart';
-import 'package:minimal_flutter_app/utils/popups/full_screen_loader.dart';
 import 'package:minimal_flutter_app/utils/popups/loaders.dart';
 
 class LoginController extends GetxController {
@@ -18,6 +16,7 @@ class LoginController extends GetxController {
   final otp = TextEditingController();
   final name = TextEditingController();
   final loginFormKey = GlobalKey<FormState>();
+  final otpFormKey = GlobalKey<FormState>();
   final RxBool isOTPSent = false.obs;
   final RxBool isLoading = false.obs;
 
@@ -28,45 +27,31 @@ class LoginController extends GetxController {
   }
 
   Future<void> sendOTPSignIn() async {
+    // Validate the form
+    if (!loginFormKey.currentState!.validate()) {
+      return; // if invalid
+    }
+
+    isLoading.value = true;
+
     try {
-      // Validation
-      print("clicked");
-      if (!loginFormKey.currentState!.validate()) return;
-      isLoading.value = true;
-      // // Loading Animation
-      // FullScreenLoader.openLoadingDialog(
-      //     'Siging In ...', Images.docerAnimation);
+      // 👉 Then check network
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        AppLoaders.errorSnackBar(
+            title: 'No Internet', message: 'Please connect to the internet.');
+        return;
+      }
 
-      // Network Check
-      // final isConnected = await NetworkManager.instance.isConnected();
-      // if (!isConnected) {
-      //   FullScreenLoader.stopLoading();
-      //   return;
-      // }
-
-      // Form Validation
-      // if (!loginFormKey.currentState!.validate()) {
-      //   FullScreenLoader.stopLoading();
-      //   return;
-      // }
-
-      // Save data, if remember me
-      // if (rememberme.value) {
-      //   localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
-      //   localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
-      // }
-      // Login the User
-      // simulate API call
-      final result = await sendOtpToEmail(email.text); // your API call here
+      // API call
+      final result = await sendOtpToEmail(email.text.trim());
 
       if (result) {
         isOTPSent.value = true;
-        isLoading.value = false;
       } else {
         Get.snackbar("Error", "Failed to send OTP");
       }
     } catch (e) {
-      FullScreenLoader.stopLoading();
       AppLoaders.errorSnackBar(title: 'Oh! Snap', message: e.toString());
     } finally {
       isLoading.value = false;
@@ -75,31 +60,30 @@ class LoginController extends GetxController {
 
   Future<void> validateOTP() async {
     try {
-      // Loading Animation
-      FullScreenLoader.openLoadingDialog(
-          'Siging In ...', Images.docerAnimation);
+      // Validate the form
+      if (!otpFormKey.currentState!.validate()) {
+        return; // if invalid
+      }
+
+      isLoading.value = true;
 
       // Network Check
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
-        FullScreenLoader.stopLoading();
+        AppLoaders.errorSnackBar(
+            title: 'No Internet', message: 'Please connect to the internet.');
         return;
       }
 
-      // Form Validation
-      if (!loginFormKey.currentState!.validate()) {
-        FullScreenLoader.stopLoading();
-        return;
-      }
-
-      // Save data, if remember me
-      // if (rememberme.value) {
-      //   localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
-      //   localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
-      // }
       // Login the User
-      // await AuthenticationRepository.instance
-      //     .loginWithEmailAndpassword(TTexts.adminEmail, TTexts.adminPassword);
+      // API call
+      final result = await sendOtpToEmail(email.text.trim());
+
+      if (result) {
+        isOTPSent.value = true;
+      } else {
+        Get.snackbar("Error", "Incorrect OTP");
+      }
 
       // // if success stop the loader
       // // FullScreenLoader.stopLoading();
@@ -107,8 +91,9 @@ class LoginController extends GetxController {
       // // Redirect to page
       // AuthenticationRepository.instance.screenredirect();
     } catch (e) {
-      FullScreenLoader.stopLoading();
       AppLoaders.errorSnackBar(title: 'Oh! Snap', message: e.toString());
+    } finally {
+      isLoading.value = false;
     }
   }
 

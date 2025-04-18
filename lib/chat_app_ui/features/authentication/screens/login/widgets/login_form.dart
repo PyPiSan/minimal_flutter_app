@@ -14,19 +14,19 @@ class LoginForm extends StatelessWidget {
       return AnimatedSwitcher(
         duration: const Duration(milliseconds: 400),
         // Fade Transistion
-        transitionBuilder: (Widget child, Animation<double> animation) {
-          return FadeTransition(opacity: animation, child: child);
-        },
-        // Slide Transistion
         // transitionBuilder: (Widget child, Animation<double> animation) {
-        //   return SlideTransition(
-        //     position: Tween<Offset>(
-        //       begin: const Offset(1, 0), // Slide in from right
-        //       end: Offset.zero,
-        //     ).animate(animation),
-        //     child: child,
-        //   );
+        //   return FadeTransition(opacity: animation, child: child);
         // },
+        // Slide Transistion
+        transitionBuilder: (Widget child, Animation<double> animation) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1, 0), // Slide in from right
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          );
+        },
         child: controller.isOTPSent.value
             ? UserForm(controller: controller) // OTP Form
             : EmailForm(controller: controller), // Email Form

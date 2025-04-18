@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:minimal_flutter_app/chat_app_ui/features/authentication/controllers/login_controller.dart';
 import 'package:minimal_flutter_app/utils/constants/sizes.dart';
@@ -16,7 +17,7 @@ class UserForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-        key: controller.loginFormKey,
+        key: controller.otpFormKey,
         child: Padding(
           padding: const EdgeInsets.symmetric(
               vertical: AppSizes.spaceBtwSections / 2),
@@ -52,32 +53,45 @@ class UserForm extends StatelessWidget {
                 height: AppSizes.spaceBtwInputFields,
               ),
               // Enter Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () => controller.validateOTP(),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          const Color(0xFF4C9FA7), // 👈 background color
-                      foregroundColor: Colors.black, // 👈 text/icon color
-                      elevation: 2,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+              Obx(
+                () => SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () => controller.validateOTP(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            const Color(0xFF4C9FA7), // 👈 background color
+                        foregroundColor: Colors.black, // 👈 text/icon color
+                        elevation: 2,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
-                    ),
-                    child: const Row(
-                      mainAxisSize:
-                          MainAxisSize.min, // 👈 so it wraps content tightly
-                      children: [
-                        Text(TTexts.chatAppLoginEnter),
-                        SizedBox(
-                            width: AppSizes
-                                .spaceBtwItems), // spacing between text and icon
-                        Icon(Iconsax.arrow_right_1), // 👈 your suffix icon
-                      ],
-                    )),
+                      child: controller.isLoading.value
+                          ? const SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                              ),
+                            )
+                          : const Row(
+                              mainAxisSize: MainAxisSize
+                                  .min, // 👈 so it wraps content tightly
+                              children: [
+                                Text(TTexts.chatAppLoginEnter),
+                                SizedBox(
+                                    width: AppSizes
+                                        .spaceBtwItems), // spacing between text and icon
+                                Icon(Iconsax
+                                    .arrow_right_1), // 👈 your suffix icon
+                              ],
+                            )),
+                ),
               ),
             ],
           ),

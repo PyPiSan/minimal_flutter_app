@@ -110,7 +110,7 @@ class Validator {
     final otpRegExp = RegExp(r'^\d{6}$');
 
     if (!otpRegExp.hasMatch(value)) {
-      return 'Invalid otp (6 digits required).';
+      return 'Invalid OTP (6 digits required).';
     }
 
     return null;
