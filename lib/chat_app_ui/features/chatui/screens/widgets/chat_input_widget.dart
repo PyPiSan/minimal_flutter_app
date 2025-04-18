@@ -12,6 +12,7 @@ Widget buildInputBox(ChatController controller) {
         Expanded(
           child: TextField(
             controller: controller.inputController,
+            focusNode: controller.inputFocusNode,
             onSubmitted: controller.isInputNotEmpty.value
                 ? (_) => controller.sendMessage()
                 : null,
