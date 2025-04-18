@@ -13,6 +13,7 @@ Widget buildInputBox(ChatController controller) {
           child: TextField(
             controller: controller.inputController,
             focusNode: controller.inputFocusNode,
+            autofocus: true,
             onSubmitted: controller.isInputNotEmpty.value
                 ? (_) => controller.sendMessage()
                 : null,
@@ -24,8 +25,9 @@ Widget buildInputBox(ChatController controller) {
         ),
         const SizedBox(width: AppSizes.spaceBtwItems),
         ElevatedButton(
-          onPressed: () =>
-              controller.isInputNotEmpty.value ? controller.sendMessage : null,
+          onPressed: () => controller.isInputNotEmpty.value
+              ? controller.sendMessage()
+              : null,
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF4C9FA7),
             elevation: 2,

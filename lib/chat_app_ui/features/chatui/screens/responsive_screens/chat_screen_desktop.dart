@@ -12,6 +12,7 @@ import 'package:minimal_flutter_app/utils/constants/sizes.dart';
 class ChatScreenDesktop extends StatelessWidget {
   ChatScreenDesktop({super.key});
   final ChatController controller = Get.put(ChatController());
+  final ScrollController scrollController = Get.put(ScrollController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,8 @@ class ChatScreenDesktop extends StatelessWidget {
                         child: Column(
                           children: [
                             Expanded(
-                              child: buildMessageList(controller),
+                              child: buildMessageList(
+                                  controller, scrollController),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(12.0),

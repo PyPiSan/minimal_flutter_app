@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 class ChatController extends GetxController {
   static ChatController get instance => Get.find();
   final TextEditingController inputController = TextEditingController();
+  final ScrollController scrollController = ScrollController();
   final FocusNode inputFocusNode = FocusNode();
   final RxBool isChatStarted = false.obs;
   final RxBool isInputNotEmpty = false.obs;
@@ -23,9 +24,17 @@ class ChatController extends GetxController {
     messages.add(text);
     inputController.clear();
 
-    // 🔥 Keep focus on input box
+    // Wait for message to be added, then scroll to bottom
+    // Keep focus on input box
     Future.delayed(const Duration(milliseconds: 100), () {
       inputFocusNode.requestFocus();
+      if (scrollController.hasClients) {
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
     });
   }
 }
