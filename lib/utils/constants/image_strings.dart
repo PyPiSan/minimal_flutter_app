@@ -318,5 +318,5 @@ class Images {
       "assets/icons/payment_methods/successful_payment_icon.png";
 
   // Images for Chat App
-  static const String chatLogo = "assets/logos/logo.svg";
+  static const String chatLogo = "assets/logos/agri_data_ai_lab_logo.svg";
 }

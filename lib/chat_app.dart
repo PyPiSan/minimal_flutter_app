@@ -29,11 +29,6 @@ class ChatApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const Scaffold(
-        body: Center(
-          child: Text("Admin Panel"),
-        ),
-      ),
     );
   }
 }

@@ -14,8 +14,8 @@ class LoginHeader extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         SvgPicture.asset(
           Images.chatLogo,
-          width: 80,
-          height: 80,
+          width: 70,
+          height: 70,
         ),
         const SizedBox(
           height: AppSizes.spaceBtwSections,
