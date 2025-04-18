@@ -15,7 +15,11 @@ class LoginController extends GetxController {
   final localStorage = GetStorage();
 
   final email = TextEditingController();
+  final otp = TextEditingController();
+  final name = TextEditingController();
   final loginFormKey = GlobalKey<FormState>();
+  final RxBool isOTPSent = false.obs;
+  final RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -23,7 +27,53 @@ class LoginController extends GetxController {
     super.onInit();
   }
 
-  Future<void> emailAndPasswordSignIn() async {
+  Future<void> sendOTPSignIn() async {
+    try {
+      // Validation
+      print("clicked");
+      if (!loginFormKey.currentState!.validate()) return;
+      isLoading.value = true;
+      // // Loading Animation
+      // FullScreenLoader.openLoadingDialog(
+      //     'Siging In ...', Images.docerAnimation);
+
+      // Network Check
+      // final isConnected = await NetworkManager.instance.isConnected();
+      // if (!isConnected) {
+      //   FullScreenLoader.stopLoading();
+      //   return;
+      // }
+
+      // Form Validation
+      // if (!loginFormKey.currentState!.validate()) {
+      //   FullScreenLoader.stopLoading();
+      //   return;
+      // }
+
+      // Save data, if remember me
+      // if (rememberme.value) {
+      //   localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
+      //   localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
+      // }
+      // Login the User
+      // simulate API call
+      final result = await sendOtpToEmail(email.text); // your API call here
+
+      if (result) {
+        isOTPSent.value = true;
+        isLoading.value = false;
+      } else {
+        Get.snackbar("Error", "Failed to send OTP");
+      }
+    } catch (e) {
+      FullScreenLoader.stopLoading();
+      AppLoaders.errorSnackBar(title: 'Oh! Snap', message: e.toString());
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> validateOTP() async {
     try {
       // Loading Animation
       FullScreenLoader.openLoadingDialog(
@@ -98,5 +148,10 @@ class LoginController extends GetxController {
       idToken: gAuth.idToken,
     );
     return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  Future<bool> sendOtpToEmail(String email) async {
+    await Future.delayed(const Duration(seconds: 2)); // simulate network
+    return true; // mock
   }
 }

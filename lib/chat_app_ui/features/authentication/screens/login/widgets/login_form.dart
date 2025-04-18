@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:minimal_flutter_app/chat_app_ui/features/authentication/controllers/login_controller.dart';
-import 'package:minimal_flutter_app/utils/constants/image_strings.dart';
-import 'package:minimal_flutter_app/utils/constants/sizes.dart';
-import 'package:minimal_flutter_app/utils/constants/text_strings.dart';
-import 'package:minimal_flutter_app/utils/validators/validation.dart';
+import 'package:minimal_flutter_app/chat_app_ui/features/authentication/screens/login/widgets/email_form.dart';
+import 'package:minimal_flutter_app/chat_app_ui/features/authentication/screens/login/widgets/user_form.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -13,118 +10,27 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
-    return Form(
-        key: controller.loginFormKey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-              vertical: AppSizes.spaceBtwSections / 2),
-          child: Column(
-            children: [
-              // Email
-              TextFormField(
-                controller: controller.email,
-                validator: Validator.validateEmail,
-                decoration: const InputDecoration(
-                    prefixIcon: Icon(Iconsax.direct_right),
-                    labelText: TTexts.email),
-              ),
-              const SizedBox(
-                height: AppSizes.spaceBtwInputFields,
-              ),
-              // Sign In Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () => controller.emailAndPasswordSignIn(),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          const Color(0xFF4C9FA7), // 👈 background color
-                      foregroundColor: Colors.black, // 👈 text/icon color
-                      elevation: 2,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: const Row(
-                      mainAxisSize:
-                          MainAxisSize.min, // 👈 so it wraps content tightly
-                      children: [
-                        Text(TTexts.chatAppLoginContinue),
-                        SizedBox(
-                            width: AppSizes
-                                .spaceBtwItems), // spacing between text and icon
-                        Icon(Iconsax.arrow_right_1), // 👈 your suffix icon
-                      ],
-                    )),
-              ),
-              const SizedBox(
-                height: AppSizes.spaceBtwInputFields / 2,
-              ),
-              // Divider
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Row(
-                  children: <Widget>[
-                    const Expanded(
-                      child: Divider(
-                        thickness: 1,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text(
-                        TTexts.or,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ),
-                    const Expanded(
-                      child: Divider(
-                        thickness: 1,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: AppSizes.spaceBtwInputFields / 2,
-              ),
-              // Google Sign In
-              SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () => controller.signInWithGoogle(),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white, // 👈 background color
-                      foregroundColor: Colors.black, // 👈 text/icon color
-                      elevation: 2,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: const Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image(
-                          image: AssetImage(Images.google),
-                          width: 20,
-                          height: 20,
-                        ),
-                        SizedBox(
-                          width: AppSizes.spaceBtwItems,
-                        ),
-                        Text(TTexts.loginWithGoogle)
-                      ],
-                    ),
-                  )),
-            ],
-          ),
-        ));
+    return Obx(() {
+      return AnimatedSwitcher(
+        duration: const Duration(milliseconds: 400),
+        // Fade Transistion
+        transitionBuilder: (Widget child, Animation<double> animation) {
+          return FadeTransition(opacity: animation, child: child);
+        },
+        // Slide Transistion
+        // transitionBuilder: (Widget child, Animation<double> animation) {
+        //   return SlideTransition(
+        //     position: Tween<Offset>(
+        //       begin: const Offset(1, 0), // Slide in from right
+        //       end: Offset.zero,
+        //     ).animate(animation),
+        //     child: child,
+        //   );
+        // },
+        child: controller.isOTPSent.value
+            ? UserForm(controller: controller) // OTP Form
+            : EmailForm(controller: controller), // Email Form
+      );
+    });
   }
 }

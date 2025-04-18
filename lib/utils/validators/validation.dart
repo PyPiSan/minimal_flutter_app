@@ -100,5 +100,21 @@ class Validator {
     return null;
   }
 
+  /// OTP Validation
+  static String? validateOTP(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'OTP is required.';
+    }
+
+    // Regular expression for otp validation (6-digit)
+    final otpRegExp = RegExp(r'^\d{6}$');
+
+    if (!otpRegExp.hasMatch(value)) {
+      return 'Invalid otp (6 digits required).';
+    }
+
+    return null;
+  }
+
 // Add more custom validators as needed for your specific requirements.
 }

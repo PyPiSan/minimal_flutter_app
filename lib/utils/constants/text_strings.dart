@@ -34,7 +34,9 @@ class TTexts {
   // -- Authentication Forms
   static const String firstName = "First Name";
   static const String lastName = "Last Name";
-  static const String email = "E-mail";
+  static const String name = "Name";
+  static const String email = "Email address";
+  static const String otp = "OTP";
   static const String password = "Password";
   static const String newPassword = "New Password";
   static const String username = "Username";
@@ -83,6 +85,7 @@ class TTexts {
   // Chat App
   static const String chatAppLoginTitle = "Welcome 👋";
   static const String chatAppLoginContinue = "Continue";
+  static const String chatAppLoginEnter = "Enter";
   static const String loginWithGoogle = "Sign in with Google";
   static const String or = "Or";
 }
