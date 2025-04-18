@@ -5,6 +5,13 @@ class ChatController extends GetxController {
   static ChatController get instance => Get.find();
   final TextEditingController inputController = TextEditingController();
   final RxBool isChatStarted = false.obs;
+  final RxBool isInputNotEmpty = false.obs;
+
+  ChatController() {
+    inputController.addListener(() {
+      isInputNotEmpty.value = inputController.text.trim().isNotEmpty;
+    });
+  }
 
   void sendMessage() {
     print("Sent");

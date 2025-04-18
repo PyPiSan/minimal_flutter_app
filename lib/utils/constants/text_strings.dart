@@ -89,4 +89,5 @@ class TTexts {
   static const String chatAppResendOTP = "Resend OTP";
   static const String loginWithGoogle = "Sign in with Google";
   static const String or = "Or";
+  static const String startChat = "Start Asking...";
 }
