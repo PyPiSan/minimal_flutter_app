@@ -93,6 +93,53 @@ class UserForm extends StatelessWidget {
                             )),
                 ),
               ),
+              // Divider
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Row(
+                  children: <Widget>[
+                    const Expanded(
+                      child: Divider(
+                        thickness: 1,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        TTexts.or,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ),
+                    const Expanded(
+                      child: Divider(
+                        thickness: 1,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: AppSizes.spaceBtwInputFields / 2,
+              ),
+              // Resend OTP
+              SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => {controller.isOTPSent.value = false},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white, // 👈 background color
+                      foregroundColor: Colors.black, // 👈 text/icon color
+                      elevation: 2,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 20, horizontal: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text(TTexts.chatAppResendOTP),
+                  )),
             ],
           ),
         ));
