@@ -11,6 +11,7 @@ class CollapsingListTile extends StatelessWidget {
   final AnimationController animationController;
   final bool isCollapsed;
   final String route;
+  final bool isEnabled;
 
   const CollapsingListTile({
     super.key,
@@ -19,6 +20,7 @@ class CollapsingListTile extends StatelessWidget {
     required this.animationController,
     required this.isCollapsed,
     required this.route,
+    this.isEnabled = true,
   });
 
   @override
@@ -31,14 +33,16 @@ class CollapsingListTile extends StatelessWidget {
       animation: animationController,
       builder: (context, child) {
         return InkWell(
-          onTap: () => sidebarController.menuOnTap(route),
-          onHover: (hovering) {
-            if (hovering) {
-              sidebarController.changeHoverItem(route);
-            } else {
-              sidebarController.changeHoverItem('');
-            }
-          },
+          onTap: isEnabled ? () => sidebarController.menuOnTap(route) : null,
+          onHover: isEnabled
+              ? (hovering) {
+                  if (hovering) {
+                    sidebarController.changeHoverItem(route);
+                  } else {
+                    sidebarController.changeHoverItem('');
+                  }
+                }
+              : null,
           child: Obx(() {
             final isActive = sidebarController.isActive(route);
             final isHover = sidebarController.isHover(route);
@@ -58,14 +62,36 @@ class CollapsingListTile extends StatelessWidget {
               margin:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
               decoration: BoxDecoration(
-                color: backgroundColor,
+                color: (isCollapsed && (isActive || isHover))
+                    ? Colors.transparent
+                    : backgroundColor,
                 borderRadius: BorderRadius.circular(AppSizes.cardRadiusSm),
               ),
               child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(AppSizes.sm),
-                    child: Icon(icon, size: 22, color: iconColor),
+                    child: Container(
+                      decoration: isCollapsed && (isActive || isHover)
+                          ? BoxDecoration(
+                              color: AppColors.primary,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.primary.withOpacity(0.5),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2),
+                                )
+                              ],
+                            )
+                          : null,
+                      padding: const EdgeInsets.all(6),
+                      child: Icon(
+                        icon,
+                        size: 22,
+                        color: iconColor,
+                      ),
+                    ),
                   ),
                   if (widthAnimation.value > 200)
                     Expanded(
