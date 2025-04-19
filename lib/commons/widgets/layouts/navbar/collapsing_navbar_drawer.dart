@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:minimal_flutter_app/chat_app_ui/routes/route.dart' show Routes;
+import 'package:minimal_flutter_app/chat_app_ui/routes/route.dart';
 import 'package:minimal_flutter_app/commons/widgets/layouts/navbar/collapsing_list_tile.dart';
 import 'package:minimal_flutter_app/commons/widgets/layouts/navbar/collapsing_section_header.dart';
 import 'package:minimal_flutter_app/commons/widgets/layouts/navbar/navbar_controller.dart';

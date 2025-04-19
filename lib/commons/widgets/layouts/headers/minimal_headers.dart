@@ -7,8 +7,8 @@ import 'package:minimal_flutter_app/utils/constants/image_strings.dart';
 import 'package:minimal_flutter_app/utils/constants/sizes.dart';
 import 'package:minimal_flutter_app/utils/device/device_utility.dart';
 
-class MinimalHeaders extends StatelessWidget implements PreferredSizeWidget {
-  const MinimalHeaders({super.key, this.scafoldKey});
+class MinimalAppHeaders extends StatelessWidget implements PreferredSizeWidget {
+  const MinimalAppHeaders({super.key, this.scafoldKey});
   final GlobalKey<ScaffoldState>? scafoldKey;
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,8 @@ class MinimalHeaders extends StatelessWidget implements PreferredSizeWidget {
       padding: const EdgeInsets.symmetric(
           horizontal: AppSizes.md, vertical: AppSizes.sm),
       child: AppBar(
+        // Disabel back button
+        automaticallyImplyLeading: false,
         // Mobile Menu
         leading: !DeviceUtils.isDesktopScreen(context)
             ? IconButton(
@@ -27,23 +29,23 @@ class MinimalHeaders extends StatelessWidget implements PreferredSizeWidget {
                 icon: const Icon(Iconsax.menu))
             : null,
         // Search Field
-        title: DeviceUtils.isDesktopScreen(context)
-            ? SizedBox(
-                width: 400,
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Iconsax.search_normal),
-                      hintText: "Type to search..."),
-                ),
-              )
-            : null,
+        // title: DeviceUtils.isDesktopScreen(context)
+        //     ? SizedBox(
+        //         width: 400,
+        //         child: TextFormField(
+        //           decoration: const InputDecoration(
+        //               prefixIcon: Icon(Iconsax.search_normal),
+        //               hintText: "Type to search..."),
+        //         ),
+        //       )
+        //     : null,
         actions: [
           // Search Icon for Mobile
-          if (!DeviceUtils.isDesktopScreen(context))
-            IconButton(
-                onPressed: () {}, icon: const Icon(Iconsax.search_normal)),
-          // Notification icon
-          IconButton(onPressed: () {}, icon: const Icon(Iconsax.notification)),
+          // if (!DeviceUtils.isDesktopScreen(context))
+          //   IconButton(
+          //       onPressed: () {}, icon: const Icon(Iconsax.search_normal)),
+          // Stting icon
+          IconButton(onPressed: () {}, icon: const Icon(Iconsax.setting)),
           const SizedBox(
             width: AppSizes.spaceBtwItems / 2,
           ),
@@ -67,7 +69,7 @@ class MinimalHeaders extends StatelessWidget implements PreferredSizeWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Pypisan",
+                      "AgriData AI Lab",
                       style: Theme.of(context).textTheme.titleLarge,
                     )
                   ],
