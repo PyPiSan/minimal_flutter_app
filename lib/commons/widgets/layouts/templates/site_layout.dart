@@ -10,8 +10,10 @@ class SiteTemplate extends StatelessWidget {
       this.desktop,
       this.mobile,
       this.tablet,
-      this.useLayout = true});
+      this.useLayout = true,
+      this.sidebar});
   final Widget? desktop;
+  final Widget? sidebar;
   final Widget? mobile;
   final Widget? tablet;
   final bool useLayout;
@@ -21,8 +23,12 @@ class SiteTemplate extends StatelessWidget {
     return Scaffold(
         // appBar: AppBar(),
         body: ResponsiveDesign(
-      desktop:
-          useLayout ? DesktopLayout(body: desktop) : desktop ?? Container(),
+      desktop: useLayout
+          ? DesktopLayout(
+              body: desktop,
+              sidebar: sidebar,
+            )
+          : desktop ?? Container(),
       tablet: useLayout
           ? TabletLayout(
               body: tablet ?? desktop,

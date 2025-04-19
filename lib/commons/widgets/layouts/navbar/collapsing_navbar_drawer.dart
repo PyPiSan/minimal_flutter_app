@@ -20,7 +20,7 @@ class _CollapsingNavbarDrawerState extends State<CollapsingNavbarDrawer>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 3000));
+        vsync: this, duration: const Duration(milliseconds: 150));
     widthAnimation =
         Tween<double>(begin: 250.0, end: 70.0).animate(_animationController);
   }
@@ -35,7 +35,7 @@ class _CollapsingNavbarDrawerState extends State<CollapsingNavbarDrawer>
   Widget getWidget(context, widget) {
     return Container(
       width: widthAnimation.value,
-      color: AppColors.primary,
+      color: AppColors.dark,
       child: Column(
         children: <Widget>[
           const SizedBox(
@@ -59,16 +59,16 @@ class _CollapsingNavbarDrawerState extends State<CollapsingNavbarDrawer>
           InkWell(
             onTap: () {
               setState(() {
-                isCollapsed != isCollapsed;
                 isCollapsed
                     ? _animationController.reverse()
                     : _animationController.forward();
+                isCollapsed ? isCollapsed = false : isCollapsed = true;
               });
             },
             child: AnimatedIcon(
               icon: AnimatedIcons.close_menu,
               progress: _animationController,
-              color: AppColors.primary,
+              color: AppColors.white,
               size: 50.0,
             ),
           )
