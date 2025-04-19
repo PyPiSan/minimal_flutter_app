@@ -5,7 +5,6 @@ import 'package:minimal_flutter_app/chat_app_ui/features/chatui/controllers/chat
 Widget buildMessageList(
     ChatController controller, ScrollController scrollController) {
   return Obx(() => ListView.builder(
-        shrinkWrap: true,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         itemCount: controller.messages.length,
         controller: scrollController,

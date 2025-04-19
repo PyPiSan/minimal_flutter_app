@@ -43,4 +43,10 @@ class ChatController extends GetxController {
       }
     });
   }
+
+  @override
+  void dispose() {
+    scrollController.dispose(); // Important to dispose!
+    super.dispose();
+  }
 }
