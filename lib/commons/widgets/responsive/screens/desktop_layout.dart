@@ -23,7 +23,7 @@ class DesktopLayout extends StatelessWidget {
                   // This rebuilds the layout when isCollapsed changes
                   Row(
                 children: [
-                  sidebar ?? const CollapsingNavbarDrawer(),
+                  sidebar ?? CollapsingNavbarDrawer(),
                   Expanded(
                     flex: sidebarController.isCollapsed.value ? 6 : 5,
                     child: Column(

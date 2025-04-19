@@ -44,7 +44,7 @@ class Sidebar extends StatelessWidget {
                           .apply(letterSpacingDelta: 1.2),
                     ),
                     const MenuItem(
-                      route: Routes.login,
+                      route: Routes.dashboard,
                       icon: Iconsax.status,
                       itemName: "Dashboard",
                     )

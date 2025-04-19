@@ -3,7 +3,7 @@ import 'package:minimal_flutter_app/ecommerce_ui/routes/route.dart';
 import 'package:minimal_flutter_app/utils/device/device_utility.dart';
 
 class SideBarController extends GetxController {
-  final activeItem = Routes.login.obs;
+  final activeItem = Routes.dashboard.obs;
   final hoverItem = ''.obs;
 
   void changeActiveItem(String route) => activeItem.value = route;

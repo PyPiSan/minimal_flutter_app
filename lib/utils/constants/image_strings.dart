@@ -319,4 +319,5 @@ class Images {
 
   // Images for Chat App
   static const String chatLogo = "assets/logos/agri_data_ai_lab_logo.svg";
+  static const String chatIcon = "assets/logos/agri_data_ai_lab_icon.svg";
 }
