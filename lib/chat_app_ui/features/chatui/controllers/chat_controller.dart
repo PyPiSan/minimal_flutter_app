@@ -25,9 +25,15 @@ class ChatController extends GetxController {
     inputController.clear();
 
     // Wait for message to be added, then scroll to bottom
+    scrollToBottom();
     // Keep focus on input box
     Future.delayed(const Duration(milliseconds: 100), () {
       inputFocusNode.requestFocus();
+    });
+  }
+
+  void scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (scrollController.hasClients) {
         scrollController.animateTo(
           scrollController.position.maxScrollExtent,
