@@ -11,8 +11,8 @@ class ApiService {
   ApiService()
       : _dio = Dio(
           BaseOptions(
-            baseUrl: dotenv.env['BACKEND_URL'] ??
-                "http://192.168.29.46:8000", // Replace with API's base URL
+            baseUrl:
+                dotenv.env['BACKEND_URL'] ?? "", // Replace with API's base URL
             connectTimeout: const Duration(seconds: 10),
             receiveTimeout: const Duration(seconds: 10),
             sendTimeout: const Duration(seconds: 10),
