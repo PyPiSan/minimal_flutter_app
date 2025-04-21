@@ -24,13 +24,15 @@ class UserForm extends StatelessWidget {
           child: Column(
             children: [
               // Name
-              TextFormField(
-                controller: controller.name,
-                validator: Validator.validateUsername,
-                decoration: const InputDecoration(
-                    prefixIcon: Icon(Iconsax.direct_right),
-                    labelText: TTexts.name),
-              ),
+              controller.userFullName == ""
+                  ? TextFormField(
+                      controller: controller.name,
+                      validator: Validator.validateUsername,
+                      decoration: const InputDecoration(
+                          prefixIcon: Icon(Iconsax.direct_right),
+                          labelText: TTexts.name),
+                    )
+                  : const SizedBox.shrink(),
               const SizedBox(
                 height: AppSizes.spaceBtwInputFields,
               ),

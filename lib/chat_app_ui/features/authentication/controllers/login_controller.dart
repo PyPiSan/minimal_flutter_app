@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:minimal_flutter_app/chat_app_ui/data/api_service.dart';
+import 'package:minimal_flutter_app/chat_app_ui/routes/route.dart';
 import 'package:minimal_flutter_app/utils/helpers/network_manager.dart';
 import 'package:minimal_flutter_app/utils/popups/loaders.dart';
 
@@ -11,7 +13,7 @@ class LoginController extends GetxController {
   static LoginController get instance => Get.find();
 
   final localStorage = GetStorage();
-
+  final rememberme = false.obs;
   final email = TextEditingController();
   final otp = TextEditingController();
   final name = TextEditingController();
@@ -19,6 +21,8 @@ class LoginController extends GetxController {
   final otpFormKey = GlobalKey<FormState>();
   final RxBool isOTPSent = false.obs;
   final RxBool isLoading = false.obs;
+  final ApiService apiService = ApiService();
+  late String userFullName;
 
   @override
   void onInit() {
@@ -44,9 +48,14 @@ class LoginController extends GetxController {
       }
 
       // API call
-      final result = await sendOtpToEmail(email.text.trim());
+      final result = await apiService.sendOtp(email.text.trim());
+      if (result != null) {
+        // print('Is User: ${result.isUser}');
+        // print('OTP Sent Successfully: ${result.isOtpSuccess}');
+        userFullName = result.name;
+      }
 
-      if (result) {
+      if (result!.isOtpSuccess) {
         isOTPSent.value = true;
       } else {
         Get.snackbar("Error", "Failed to send OTP");
@@ -76,11 +85,17 @@ class LoginController extends GetxController {
       }
 
       // Login the User
-      // API call
-      final result = await sendOtpToEmail(email.text.trim());
+      // final result = await sendOtpToEmail(email.text.trim());
+      final result = await apiService.validateOtp(
+          email.text.trim(), otp.text.trim(), name.text.trim());
+      // if (result != null) {
+      //   // print('OTP Sent Successfully: ${result.isSuccess}');
+      //   // print('message: ${result.message}');
+      // }
 
-      if (result) {
-        isOTPSent.value = true;
+      if (result?.isSuccess ?? false) {
+        isLoading.value = false;
+        screenredirect();
       } else {
         Get.snackbar("Error", "Incorrect OTP");
       }
@@ -135,8 +150,12 @@ class LoginController extends GetxController {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  Future<bool> sendOtpToEmail(String email) async {
-    await Future.delayed(const Duration(seconds: 2)); // simulate network
-    return true; // mock
+  // Future<bool> sendOtpToEmail(String email) async {
+  //   await Future.delayed(const Duration(seconds: 2)); // simulate network
+  //   return true; // mock
+  // }
+
+  void screenredirect() async {
+    Get.offAllNamed(Routes.chat);
   }
 }

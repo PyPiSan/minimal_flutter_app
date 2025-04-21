@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:minimal_flutter_app/chat_app.dart';
@@ -12,6 +13,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<void> main() async {
   // Ensure that the widgets are initialized
   WidgetsFlutterBinding.ensureInitialized();
+
+  // load env
+  await dotenv.load();
   // Use different plugins
   configureApp();
   // Initialize GetX storage

@@ -35,6 +35,27 @@ class EmailForm extends StatelessWidget {
               const SizedBox(
                 height: AppSizes.spaceBtwInputFields,
               ),
+              // remember me
+              Row(
+                children: [
+                  // remember me
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Obx(
+                        () => Checkbox(
+                            value: controller.rememberme.value,
+                            onChanged: (value) =>
+                                controller.rememberme.value = value!),
+                      ),
+                      const Text(TTexts.rememberMe)
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: AppSizes.spaceBtwInputFields,
+              ),
               // Sign In Button
               Obx(
                 () => SizedBox(
