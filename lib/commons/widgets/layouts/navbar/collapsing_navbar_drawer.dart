@@ -52,7 +52,7 @@ class CollapsingNavbarDrawer extends StatelessWidget {
                     icon: Iconsax.chart_square,
                     animationController: sidebarController.animationController,
                     isCollapsed: isCollapsed,
-                    route: Routes.portfolio,
+                    route: Routes.analytics,
                     isEnabled: false,
                   ),
                   const SizedBox(height: AppSizes.spaceBtwSections / 2),

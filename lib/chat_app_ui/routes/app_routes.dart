@@ -13,8 +13,8 @@ class AppRoute {
       // middlewares: [RouteMiddleware()]
     ),
     GetPage(
-      name: Routes.portfolio,
-      page: () => const Portfolio(),
+      name: Routes.analytics,
+      page: () => const Analytics(),
       // middlewares: [RouteMiddleware()]
     )
   ];

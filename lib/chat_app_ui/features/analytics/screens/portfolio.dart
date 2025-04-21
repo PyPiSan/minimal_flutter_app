@@ -4,8 +4,8 @@ import 'package:minimal_flutter_app/commons/widgets/layouts/headers/minimal_head
 import 'package:minimal_flutter_app/commons/widgets/layouts/navbar/collapsing_navbar_drawer.dart';
 import 'package:minimal_flutter_app/commons/widgets/layouts/templates/site_layout.dart';
 
-class Portfolio extends StatelessWidget {
-  const Portfolio({super.key});
+class Analytics extends StatelessWidget {
+  const Analytics({super.key});
 
   @override
   Widget build(BuildContext context) {
