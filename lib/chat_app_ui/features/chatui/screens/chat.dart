@@ -15,7 +15,8 @@ class ChatScreen extends StatelessWidget {
       desktop: ChatScreenDesktop(),
       sidebar: CollapsingNavbarDrawer(),
       appHeader: const MinimalAppHeaders(),
-      tablet: const ChatScreenTablet(),
+      tablet: ChatScreenTablet(),
+      mobile: ChatScreenTablet(),
     );
   }
 }

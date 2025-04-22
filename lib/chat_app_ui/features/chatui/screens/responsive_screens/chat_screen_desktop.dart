@@ -12,6 +12,11 @@ import 'package:minimal_flutter_app/utils/constants/sizes.dart';
 class ChatScreenDesktop extends StatelessWidget {
   ChatScreenDesktop({super.key});
   final ChatController controller = Get.put(ChatController());
+  final List<String> questions = [
+    "This makes the width dynamic, so it can adapt to the available space in the parent widget.",
+    "How is funding allocated in Sub-Saharan regions?",
+    "Which countries are top recipients of World Bank aid?"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -60,26 +65,27 @@ class ChatScreenDesktop extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: AppSizes.spaceBtwSections),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ExampleChatCardWidget(
                           icon: Iconsax.message_2,
                           color: Colors.black,
                           title: "Examples",
+                          questions: questions,
                         ),
-                        SizedBox(width: AppSizes.spaceBtwSections),
+                        const SizedBox(width: AppSizes.spaceBtwSections),
                         ExampleChatCardWidget(
-                          icon: Iconsax.voice_cricle,
-                          color: Colors.black,
-                          title: "Capabilities",
-                        ),
-                        SizedBox(width: AppSizes.spaceBtwSections),
+                            icon: Iconsax.voice_cricle,
+                            color: Colors.black,
+                            title: "Capabilities",
+                            questions: questions),
+                        const SizedBox(width: AppSizes.spaceBtwSections),
                         ExampleChatCardWidget(
-                          icon: Iconsax.voice_square,
-                          color: Colors.black,
-                          title: "Limitations",
-                        ),
+                            icon: Iconsax.voice_square,
+                            color: Colors.black,
+                            title: "Limitations",
+                            questions: questions),
                       ],
                     ),
                   ],
