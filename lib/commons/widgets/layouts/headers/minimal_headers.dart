@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:minimal_flutter_app/chat_app_ui/features/authentication/controllers/user_controller.dart';
 import 'package:minimal_flutter_app/commons/widgets/images/t_rounded_image.dart';
 import 'package:minimal_flutter_app/utils/constants/colors.dart';
 import 'package:minimal_flutter_app/utils/constants/enums.dart';
@@ -12,7 +14,8 @@ class MinimalAppHeaders extends StatelessWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState>? scafoldKey;
   @override
   Widget build(BuildContext context) {
-    // final controller = UserController.instance;
+    final userController = Get.put(UserController());
+    final hasPhoto = userController.photoUrl.value.isNotEmpty;
     return Container(
       decoration: const BoxDecoration(
           color: AppColors.white,
@@ -53,12 +56,12 @@ class MinimalAppHeaders extends StatelessWidget implements PreferredSizeWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const RoundedImage(
+              RoundedImage(
                 width: 40,
                 height: 40,
                 padding: 2,
-                imageType: ImageType.asset,
-                image: Images.user,
+                imageType: hasPhoto ? ImageType.network : ImageType.asset,
+                image: hasPhoto ? userController.photoUrl.value : Images.user,
               ),
               const SizedBox(
                 width: AppSizes.sm,
@@ -69,7 +72,7 @@ class MinimalAppHeaders extends StatelessWidget implements PreferredSizeWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "AgriData AI Lab",
+                      userController.name.value,
                       style: Theme.of(context).textTheme.titleLarge,
                     )
                   ],
