@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -88,23 +87,14 @@ class LoginController extends GetxController {
       // final result = await sendOtpToEmail(email.text.trim());
       final result = await apiService.validateOtp(
           email.text.trim(), otp.text.trim(), name.text.trim());
-      // if (result != null) {
-      //   // print('OTP Sent Successfully: ${result.isSuccess}');
-      //   // print('message: ${result.message}');
-      // }
 
       if (result?.isSuccess ?? false) {
         isLoading.value = false;
-        screenredirect();
+        saveUser(name.text.trim(), email.text.trim(), '');
+        screenredirect(name.text.trim(), email.text.trim(), '');
       } else {
         Get.snackbar("Error", "Incorrect OTP");
       }
-
-      // // if success stop the loader
-      // // FullScreenLoader.stopLoading();
-
-      // // Redirect to page
-      // AuthenticationRepository.instance.screenredirect();
     } catch (e) {
       AppLoaders.errorSnackBar(title: 'Oh! Snap', message: e.toString());
     } finally {
@@ -112,50 +102,68 @@ class LoginController extends GetxController {
     }
   }
 
-  signInWithGoogle() async {
-    // begin Inetractive sign in process
-    final GoogleSignInAccount? gUser = await GoogleSignIn(
-      clientId: dotenv.env['GOOGLE_CLIENT_ID'] ?? '',
-    ).signIn();
-    // final GoogleSignIn googleSignIn = GoogleSignIn(
-    //   clientId: dotenv.env['GOOGLE_CLIENT_ID'] ?? '',
-    // );
-    // // Use signInSilently for web sign-in
-    // try {
-    //   await googleSignIn.signInSilently();
-    //   print('User signed in: ${googleSignIn.currentUser}');
-    // } catch (error) {
-    //   print('Error signing in: $error');
-    // }
+  Future<void> signInWithGoogle() async {
+    try {
+      final googleClientId = dotenv.env['GOOGLE_CLIENT_ID'] ?? '';
+      // begin Inetractive sign in process
 
-    // googleSignIn.onCurrentUserChanged.listen((account) {
-    //   if (account != null) {
-    //     // User signed in
-    //     print('User info: ${account.displayName}');
-    //     print('ID Token: ${account.id}');
-    //   } else {
-    //     // User signed out
-    //     print('User signed out');
-    //   }
-    // });
+      final GoogleSignIn googleSignIn = GoogleSignIn(
+        scopes: <String>['email'],
+        clientId: googleClientId,
+      );
 
-    // get auth detail from request
-    final GoogleSignInAuthentication gAuth = await gUser!.authentication;
-
-    // create a new credential for the user
-    final credential = GoogleAuthProvider.credential(
-      accessToken: gAuth.accessToken,
-      idToken: gAuth.idToken,
-    );
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+      // Listen for current user changes
+      googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
+        if (account != null) {
+          // print('User signed in: ${account.displayName}');
+          saveUser(
+              account.displayName ?? '', account.email, account.photoUrl ?? '');
+          screenredirect(
+              account.displayName ?? '', account.email, account.photoUrl ?? '');
+        }
+      });
+      // Sign the user in if they haven't signed in yet
+      googleSignIn.signIn().then((GoogleSignInAccount? account) {
+        if (account != null) {
+          // print('User signed in later: ${account.displayName}');
+          // print('User signed in later: ${account.email}');
+          // print('User signed in later: ${account.photoUrl}');
+          saveUser(
+              account.displayName ?? '', account.email, account.photoUrl ?? '');
+          screenredirect(
+              account.displayName ?? '', account.email, account.photoUrl ?? '');
+        } else {
+          AppLoaders.errorSnackBar(
+              title: "Oh! Snap, Sign-in failed or was cancelled");
+        }
+      });
+    } catch (e) {
+      AppLoaders.errorSnackBar(title: 'Oh! Snap', message: e.toString());
+      return;
+    }
   }
 
+  // Dummy method
   // Future<bool> sendOtpToEmail(String email) async {
   //   await Future.delayed(const Duration(seconds: 2)); // simulate network
   //   return true; // mock
   // }
 
-  void screenredirect() async {
-    Get.offAllNamed(Routes.chat);
+  // to redirect
+  void screenredirect(String displayName, String email, String photoUrl) async {
+    Get.offAllNamed(
+      Routes.chat,
+      arguments: {
+        'name': displayName,
+        'email': email,
+        'photoUrl': photoUrl,
+      },
+    );
+  }
+
+  void saveUser(String displayName, String email, String photoUrl) {
+    localStorage.write('name', displayName);
+    localStorage.write('email', email);
+    localStorage.write('photoUrl', photoUrl);
   }
 }

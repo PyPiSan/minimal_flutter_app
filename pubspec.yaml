@@ -35,6 +35,9 @@ dependencies:
   dio: ^5.8.0+1
   logger: ^2.5.0
 
+dependency_overrides:
+  google_sign_in_web: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
