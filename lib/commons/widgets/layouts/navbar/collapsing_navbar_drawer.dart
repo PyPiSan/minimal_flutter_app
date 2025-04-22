@@ -48,7 +48,7 @@ class CollapsingNavbarDrawer extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSizes.spaceBtwSections / 2),
                   CollapsingListTile(
-                    title: 'Portfolio',
+                    title: 'Analytics',
                     icon: Iconsax.chart_square,
                     animationController: sidebarController.animationController,
                     isCollapsed: isCollapsed,

@@ -3,6 +3,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 import 'package:minimal_flutter_app/chat_app_ui/features/chatui/controllers/chat_controller.dart';
 import 'package:minimal_flutter_app/chat_app_ui/features/chatui/models/conversation_model.dart';
+import 'package:minimal_flutter_app/chat_app_ui/features/chatui/screens/widgets/messgae_action_bar.dart';
 import 'package:minimal_flutter_app/chat_app_ui/features/chatui/screens/widgets/typing_loader.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,18 +19,6 @@ Widget buildMessageList(
         // If it's the last item and isLoading is true, show the loader
         if (controller.isLoading.value && index == controller.messages.length) {
           return const TypingLoader();
-          // return Align(
-          //   alignment: Alignment.centerLeft, // Show on the left side
-          //   child: Container(
-          //     padding: const EdgeInsets.all(16),
-          //     child: Image.asset(
-          //       'assets/images/loaders/chat_loading.gif', // Path to your loading GIF
-          //       width: 80, // Adjust the size as needed
-          //       height: 80,
-          //       gaplessPlayback: true,
-          //     ),
-          //   ),
-          // );
         }
 
         // Otherwise, show the messages
@@ -39,45 +28,61 @@ Widget buildMessageList(
           alignment: isUser
               ? Alignment.centerRight
               : Alignment.centerLeft, // Aligning user messages to the right
-          child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 6),
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: const Radius.circular(16),
-                  topRight: const Radius.circular(16),
-                  bottomLeft: isUser
-                      ? const Radius.circular(16)
-                      : const Radius.circular(0),
-                  bottomRight: isUser
-                      ? const Radius.circular(0)
-                      : const Radius.circular(16),
-                ),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 4,
-                    offset: Offset(0, 2),
+          child: Column(
+              crossAxisAlignment:
+                  isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              children: [
+                Container(
+                    margin: const EdgeInsets.symmetric(vertical: 6),
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: const Radius.circular(16),
+                        topRight: const Radius.circular(16),
+                        bottomLeft: isUser
+                            ? const Radius.circular(16)
+                            : const Radius.circular(0),
+                        bottomRight: isUser
+                            ? const Radius.circular(0)
+                            : const Radius.circular(16),
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 4,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: MarkdownBody(
+                      data: message.text,
+                      onTapLink: (text, href, title) async {
+                        if (href != null &&
+                            await canLaunchUrl(Uri.parse(href))) {
+                          await launchUrl(Uri.parse(href),
+                              mode: LaunchMode.externalApplication);
+                        }
+                      },
+                      styleSheet: MarkdownStyleSheet(
+                        p: const TextStyle(fontSize: 16),
+                        code: TextStyle(
+                          fontFamily: 'monospace',
+                          backgroundColor: Colors.grey[300],
+                        ),
+                      ),
+                    )),
+                if (!isUser)
+                  MessageActionBar(
+                    messageText: message.text,
+                    onThumbsUp: () {
+                      // Handle thumbs up
+                    },
+                    onThumbsDown: () {
+                      // Handle thumbs down
+                    },
                   ),
-                ],
-              ),
-              child: MarkdownBody(
-                data: message.text,
-                onTapLink: (text, href, title) async {
-                  if (href != null && await canLaunchUrl(Uri.parse(href))) {
-                    await launchUrl(Uri.parse(href),
-                        mode: LaunchMode.externalApplication);
-                  }
-                },
-                styleSheet: MarkdownStyleSheet(
-                  p: const TextStyle(fontSize: 16),
-                  code: TextStyle(
-                    fontFamily: 'monospace',
-                    backgroundColor: Colors.grey[300],
-                  ),
-                ),
-              )),
+              ]),
         );
       },
     );

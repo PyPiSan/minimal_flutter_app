@@ -93,7 +93,7 @@ class LoginController extends GetxController {
         saveUser(name.text.trim(), email.text.trim(), '');
         screenredirect(name.text.trim(), email.text.trim(), '');
       } else {
-        Get.snackbar("Error", "Incorrect OTP");
+        AppLoaders.errorSnackBar(title: 'Oh! Snap', message: "Incorrect OTP");
       }
     } catch (e) {
       AppLoaders.errorSnackBar(title: 'Oh! Snap', message: e.toString());

@@ -27,7 +27,7 @@ class ChatScreenDesktop extends StatelessWidget {
                 builder: (context, constraints) {
                   return Center(
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 800),
+                      constraints: const BoxConstraints(maxWidth: 900),
                       child: SizedBox(
                         height: constraints.maxHeight,
                         child: Column(
@@ -58,7 +58,7 @@ class ChatScreenDesktop extends StatelessWidget {
                     ),
                     const SizedBox(height: AppSizes.spaceBtwSections),
                     ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 800),
+                      constraints: const BoxConstraints(maxWidth: 900),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: buildInputBox(controller),

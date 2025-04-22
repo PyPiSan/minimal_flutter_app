@@ -78,7 +78,7 @@ class CollapsingListTile extends StatelessWidget {
                               shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
-                                  color: AppColors.primary.withOpacity(0.5),
+                                  color: AppColors.primary.withValues(),
                                   blurRadius: 6,
                                   offset: const Offset(0, 2),
                                 )
@@ -86,22 +86,28 @@ class CollapsingListTile extends StatelessWidget {
                             )
                           : null,
                       padding: const EdgeInsets.all(6),
-                      child: Icon(
-                        icon,
-                        size: 22,
-                        color: iconColor,
+                      child: Tooltip(
+                        message: title,
+                        child: Icon(
+                          icon,
+                          size: 22,
+                          color: iconColor,
+                        ),
                       ),
                     ),
                   ),
                   if (widthAnimation.value > 200)
                     Expanded(
-                      child: Text(
-                        title,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .apply(color: textColor),
+                      child: Tooltip(
+                        message: title, // The full text you want to show
+                        child: Text(
+                          title,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .apply(color: textColor),
+                        ),
                       ),
                     ),
                 ],

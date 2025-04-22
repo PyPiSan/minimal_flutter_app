@@ -36,7 +36,7 @@ Widget buildInputBox(ChatController controller) {
               borderRadius: BorderRadius.circular(8),
             ),
           ),
-          child: const Icon(Iconsax.send_24),
+          child: const Tooltip(message: "Send", child: Icon(Iconsax.send_24)),
         )
       ],
     ),
