@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logger/logger.dart';
 import 'package:minimal_flutter_app/chat_app_ui/features/authentication/models/otp_response.dart';
 import 'package:minimal_flutter_app/chat_app_ui/features/authentication/models/verify_otp_response.dart';
+import 'package:minimal_flutter_app/chat_app_ui/features/chatui/models/chat_response_model.dart';
 
 class ApiService {
   late final Dio _dio;
@@ -13,9 +14,9 @@ class ApiService {
           BaseOptions(
             baseUrl:
                 dotenv.env['BACKEND_URL'] ?? "", // Replace with API's base URL
-            connectTimeout: const Duration(seconds: 10),
-            receiveTimeout: const Duration(seconds: 10),
-            sendTimeout: const Duration(seconds: 10),
+            connectTimeout: const Duration(seconds: 120),
+            receiveTimeout: const Duration(seconds: 120),
+            sendTimeout: const Duration(seconds: 120),
             headers: {
               'Content-Type': 'application/json',
             },
@@ -76,6 +77,35 @@ class ApiService {
         return VerifyOtpResponse.fromJson(response.data);
       } else {
         _logger.w('Failed to verify OTP: ${response.statusCode}');
+        return null;
+      }
+    } on DioException catch (e) {
+      _logger.e('DioException: ${e.message}');
+      return null;
+    } catch (e) {
+      _logger.e('Unexpected error: $e');
+      return null;
+    }
+  }
+
+  Future<ChatResponseModel?> askQuestion(String query, String sessionId,
+      String conversationId, bool isNewConversation) async {
+    try {
+      final response = await _dio.post(
+        '/api/v1/response', // Replace with API endpoint
+        data: {
+          'query': query,
+          'session_id': sessionId,
+          'conversation_id': conversationId,
+          "is_new_conversation": isNewConversation,
+          "chat_history": []
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return ChatResponseModel.fromJson(response.data);
+      } else {
+        _logger.w('Error in getting answer: ${response.statusCode}');
         return null;
       }
     } on DioException catch (e) {

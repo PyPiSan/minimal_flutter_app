@@ -13,9 +13,9 @@ class ChatScreenDesktop extends StatelessWidget {
   ChatScreenDesktop({super.key});
   final ChatController controller = Get.put(ChatController());
   final List<String> questions = [
-    "This makes the width dynamic, so it can adapt to the available space in the parent widget.",
-    "How is funding allocated in Sub-Saharan regions?",
-    "Which countries are top recipients of World Bank aid?"
+    "What datasets are available for rice, wheat, and maize pest identification?",
+    "Develop an AI-powered value chain analytics system for mango and guava production in targeted districts.",
+    "Share 3-5 global examples of AI-driven climate-resilient farming system that could be adapted for drought-prone areas."
   ];
 
   @override
