@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:minimal_flutter_app/chat_app_ui/routes/route.dart';
+// import 'package:minimal_flutter_app/chat_app_ui/routes/route.dart'; // Removed ChatApp routes
+import 'package:minimal_flutter_app/ecommerce_ui/routes/route.dart'; // Added Ecommerce routes
 import 'package:minimal_flutter_app/commons/widgets/layouts/navbar/collapsing_list_tile.dart';
 import 'package:minimal_flutter_app/commons/widgets/layouts/navbar/collapsing_section_header.dart';
 import 'package:minimal_flutter_app/commons/widgets/layouts/navbar/navbar_controller.dart';
@@ -36,34 +37,30 @@ class CollapsingNavbarDrawer extends StatelessWidget {
                     originalSvgIconPath: Images.chatLogo,
                     animationController: sidebarController.animationController,
                     isCollapsed: isCollapsed,
-                    collapsedSvgIconPath: Images.chatIcon,
+                    collapsedSvgIconPath: Images.cartIcon, // Changed icon to ecommerce related
                   ),
                   const SizedBox(height: AppSizes.spaceBtwSections / 2),
-                  CollapsingListTile(
-                    title: 'Chat',
-                    icon: Iconsax.message,
+                  // --- Removed ChatApp Tiles ---
+                  // --- Added Ecommerce Tiles ---
+                   CollapsingListTile(
+                      title: 'Dashboard',
+                      icon: Iconsax.element_3, // Example icon
+                      animationController: sidebarController.animationController,
+                      isCollapsed: isCollapsed,
+                      route: Routes.dashboard, // Use Ecommerce route constant
+                      isEnabled: true,
+                    ),
+                   const SizedBox(height: AppSizes.spaceBtwSections / 2),
+                   CollapsingListTile(
+                    title: 'Settings',
+                    icon: Iconsax.setting_2, // Example icon
                     animationController: sidebarController.animationController,
                     isCollapsed: isCollapsed,
-                    route: Routes.chat,
+                    route: Routes.settings, // Use Ecommerce route constant
+                    isEnabled: true,
                   ),
                   const SizedBox(height: AppSizes.spaceBtwSections / 2),
-                  CollapsingListTile(
-                    title: 'Analytics',
-                    icon: Iconsax.chart_square,
-                    animationController: sidebarController.animationController,
-                    isCollapsed: isCollapsed,
-                    route: Routes.analytics,
-                    isEnabled: false,
-                  ),
-                  const SizedBox(height: AppSizes.spaceBtwSections / 2),
-                  CollapsingListTile(
-                    title: 'History',
-                    icon: Iconsax.clock,
-                    animationController: sidebarController.animationController,
-                    isCollapsed: isCollapsed,
-                    route: '/history',
-                    isEnabled: false,
-                  ),
+                  // Add more Ecommerce related tiles here if needed
                 ],
               ),
             ),

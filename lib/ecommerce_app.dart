@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/routes/app_route.dart';
-import 'package:minimal_flutter_app/ecommerce_ui/routes/route.dart';
+import 'package:minimal_flutter_app/ecommerce_ui/layout/main_layout.dart'; // Import MainLayout
+// import 'package:minimal_flutter_app/ecommerce_ui/routes/app_route.dart'; // Removed
+// import 'package:minimal_flutter_app/ecommerce_ui/routes/route.dart'; // Removed
 import 'package:minimal_flutter_app/utils/helpers/general_bindings.dart';
 import 'package:minimal_flutter_app/utils/theme/theme.dart';
 
@@ -18,22 +19,18 @@ class EcommerceApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       // debug mode switch
       debugShowCheckedModeBanner: false,
-      getPages: AppRoute.pages,
-      initialBinding: GeneralBindings(),
-      initialRoute: Routes.login,
-      unknownRoute: GetPage(
-        name: '/page-not-found',
-        page: () => const Scaffold(
-          body: Center(
-            child: Text("Route Not Found"),
-          ),
-        ),
-      ),
-      home: const Scaffold(
-        body: Center(
-          child: Text("Admin Panel"),
-        ),
-      ),
+      // getPages: AppRoute.pages, // Removed
+      initialBinding: GeneralBindings(), // Kept for now
+      // initialRoute: Routes.login, // Removed
+      // unknownRoute: GetPage( // Removed
+      //   name: '/page-not-found',
+      //   page: () => const Scaffold(
+      //     body: Center(
+      //       child: Text("Route Not Found"),
+      //     ),
+      //   ),
+      // ),
+      home: const MainLayout(), // Use MainLayout as home
     );
   }
 }

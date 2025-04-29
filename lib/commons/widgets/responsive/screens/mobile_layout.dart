@@ -1,26 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_flutter_app/commons/widgets/layouts/headers/minimal_headers.dart';
-import 'package:minimal_flutter_app/commons/widgets/layouts/navbar/collapsing_navbar_drawer.dart';
-// import 'package:minimal_flutter_app/commons/widgets/layouts/headers/headers.dart';
-// import 'package:minimal_flutter_app/commons/widgets/layouts/sidebars/sidebar.dart';
+// Imports for Scaffold, AppBar, Drawer are removed as they are no longer used directly here.
 
 class MobileLayout extends StatelessWidget {
-  MobileLayout({super.key, this.body});
-  final Widget? body;
-  final GlobalKey<ScaffoldState> scafoldKey = GlobalKey();
+  // Make body required and non-nullable
+  const MobileLayout({super.key, required this.body});
+  final Widget body;
+  // final GlobalKey<ScaffoldState> scafoldKey = GlobalKey(); // Removed Scaffold Key
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scafoldKey,
-      // drawer: const Sidebar(),
-      // appBar: AppHeaders(
-      //   scafoldKey: scafoldKey,
-      // ),
-      drawer: CollapsingNavbarDrawer(),
-      appBar: MinimalAppHeaders(
-        scafoldKey: scafoldKey,
-      ),
-      body: body ?? const SizedBox(),
-    );
+    // Return the body directly, removing Scaffold, AppBar, Drawer
+    return body;
   }
 }

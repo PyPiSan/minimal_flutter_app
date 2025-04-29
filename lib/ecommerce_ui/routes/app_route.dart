@@ -7,16 +7,16 @@ import 'package:minimal_flutter_app/ecommerce_ui/routes/route.dart';
 // import 'package:minimal_flutter_app/ecommerce_ui/routes/routes_middleware.dart';
 
 class AppRoute {
-  static final List<GetPage> pages = [
-    GetPage(name: Routes.login, page: () => const LoginScreen()),
-    GetPage(
-        name: Routes.forgetPassword, page: () => const ForgotPasswordScreen()),
-    GetPage(
-        name: Routes.resetPassword, page: () => const ResetPasswordScreen()),
-    GetPage(
-      name: Routes.dashboard,
-      page: () => const Dashboard(),
-      // middlewares: [RouteMiddleware()]
-    ),
-  ];
+  // static final List<GetPage> pages = [
+  //   GetPage(name: Routes.login, page: () => const LoginScreen()),
+  //   GetPage(
+  //       name: Routes.forgetPassword, page: () => const ForgotPasswordScreen()),
+  //   GetPage(
+  //       name: Routes.resetPassword, page: () => const ResetPasswordScreen()),
+  //   GetPage(
+  //     name: Routes.dashboard,
+  //     page: () => const Dashboard(),
+  //     // middlewares: [RouteMiddleware()]
+  //   ),
+  // ];
 }
