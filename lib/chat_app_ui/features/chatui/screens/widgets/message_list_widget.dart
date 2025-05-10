@@ -3,6 +3,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 import 'package:minimal_flutter_app/chat_app_ui/features/chatui/controllers/chat_controller.dart';
 import 'package:minimal_flutter_app/chat_app_ui/features/chatui/models/conversation_model.dart';
+import 'package:minimal_flutter_app/chat_app_ui/features/chatui/screens/widgets/chat_chart_widget.dart';
 import 'package:minimal_flutter_app/chat_app_ui/features/chatui/screens/widgets/messgae_action_bar.dart';
 import 'package:minimal_flutter_app/chat_app_ui/features/chatui/screens/widgets/typing_loader.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -55,24 +56,8 @@ Widget buildMessageList(
                         ),
                       ],
                     ),
-                    child: MarkdownBody(
-                      data: message.text,
-                      onTapLink: (text, href, title) async {
-                        if (href != null &&
-                            await canLaunchUrl(Uri.parse(href))) {
-                          await launchUrl(Uri.parse(href),
-                              mode: LaunchMode.externalApplication);
-                        }
-                      },
-                      styleSheet: MarkdownStyleSheet(
-                        p: const TextStyle(fontSize: 16),
-                        code: TextStyle(
-                          fontFamily: 'monospace',
-                          backgroundColor: Colors.grey[300],
-                        ),
-                      ),
-                    )),
-                if (!isUser)
+                    child: _buildMessageContent(context, message)),
+                if (!isUser && message.chartData == null) // Only show action bar for non-chart AI messages
                   MessageActionBar(
                     messageText: message.text,
                     onThumbsUp: () {
@@ -87,4 +72,45 @@ Widget buildMessageList(
       },
     );
   });
+}
+
+Widget _buildMessageContent(BuildContext context, CoversationModel message) {
+  if (message.chartData != null) {
+    final chartData = message.chartData!;
+    final chartType = chartData['type'] as String?;
+    final labels = (chartData['labels'] as List<dynamic>?)?.cast<String>();
+    final datasets = (chartData['datasets'] as List<dynamic>?)
+        ?.map((e) => e as Map<String, dynamic>)
+        .toList();
+
+    if (chartType != null && labels != null && datasets != null) {
+      return SizedBox(
+        height: 250,
+        width: MediaQuery.of(context).size.width * 0.8,
+        child: ChatChartWidget(
+          chartType: chartType,
+          labels: labels,
+          datasets: datasets,
+        ),
+      );
+    }
+  }
+
+  // Fallback to MarkdownBody if chartData is null, incomplete, or message is text
+  return MarkdownBody(
+    data: message.text,
+    onTapLink: (text, href, title) async {
+      if (href != null && await canLaunchUrl(Uri.parse(href))) {
+        await launchUrl(Uri.parse(href),
+            mode: LaunchMode.externalApplication);
+      }
+    },
+    styleSheet: MarkdownStyleSheet(
+      p: const TextStyle(fontSize: 16),
+      code: TextStyle(
+        fontFamily: 'monospace',
+        backgroundColor: Colors.grey[300],
+      ),
+    ),
+  );
 }

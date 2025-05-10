@@ -40,9 +40,86 @@ class ChatController extends GetxController {
     final text = inputController.text.trim();
     if (text.isEmpty) return;
 
+    // Add user's message
     messages.add(CoversationModel(text: text, sender: Sender.user));
+    final String lowerCaseText = text.toLowerCase();
     inputController.clear();
+    // Request focus immediately after clearing, before any potential async operations
+    Future.delayed(const Duration(milliseconds: 50), () {
+        inputFocusNode.requestFocus();
+    });
+
+
+    // Check for chart requests
+    if (lowerCaseText.contains("show me a bar chart")) {
+      isLoading.value = true;
+      scrollToBottom(); // Scroll after user message is added
+
+      await Future.delayed(const Duration(seconds: 1)); // Simulate AI thinking
+
+      messages.add(CoversationModel(
+        text: "Here is your bar chart:",
+        sender: Sender.ai,
+        chartData: {
+          'type': 'bar',
+          'labels': ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+          'datasets': [
+            {
+              'label': 'Sales',
+              'data': [120, 180, 150, 210, 160],
+              'backgroundColor': 'rgba(54, 162, 235, 0.5)', // Example color
+              'borderColor': 'rgba(54, 162, 235, 1)',      // Example border
+              'borderWidth': 1
+            }
+          ]
+        },
+      ));
+      isLoading.value = false;
+      scrollToBottom();
+      return; // Skip normal API call
+    } else if (lowerCaseText.contains("display pie chart")) {
+      isLoading.value = true;
+      scrollToBottom(); // Scroll after user message is added
+
+      await Future.delayed(const Duration(seconds: 1)); // Simulate AI thinking
+
+      messages.add(CoversationModel(
+        text: "Certainly, here's a pie chart:",
+        sender: Sender.ai,
+        chartData: {
+          'type': 'pie',
+          'labels': ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+          'datasets': [
+            {
+              'label': 'Votes',
+              'data': [300, 50, 100, 40, 120],
+              'backgroundColor': [ // Example colors
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)'
+              ],
+              'borderColor': [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+              ],
+              'borderWidth': 1
+            }
+          ]
+        },
+      ));
+      isLoading.value = false;
+      scrollToBottom();
+      return; // Skip normal API call
+    }
+
+    // If no chart request, proceed with normal message handling
     isLoading.value = true;
+    scrollToBottom(); // Scroll after user message is added, before API call
 
     try {
       final response =
@@ -66,27 +143,20 @@ class ChatController extends GetxController {
     } finally {
       isLoading.value = false;
       scrollToBottom();
-      Future.delayed(const Duration(milliseconds: 100), () {
-        inputFocusNode.requestFocus();
-      });
+      // Focus request was moved up
     }
   }
 
   void scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(milliseconds: 200), () {
-        if (scrollController.hasClients) {
-          scrollController
-              .animateTo(
-            scrollController.position.maxScrollExtent,
-            duration: const Duration(seconds: 1), // slower animation
-            curve: Curves.easeInOutCubic, // smoother easing
-          )
-              .then((_) {
-            scrollController.jumpTo(scrollController.position.maxScrollExtent);
-          });
-        }
-      });
+      if (scrollController.hasClients) {
+        // No need for an additional delay here if we just want it to scroll ASAP
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300), // Faster animation
+          curve: Curves.easeOut, // Smoother easing for quick scrolls
+        );
+      }
     });
   }
 
